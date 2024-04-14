@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <h1>Nuevo usuario</h1>
+    <form method="post" action="#" th:action="@{/usuarios/registro/submit}" th:object="${nuevoUsuario}">
+        <label>Id: <input type="hidden" id="id" th:field="*{id}" /> </label><br />
+        <label>Alias: <input type="text" id="alias" th:field="*{alias}" /></label><br />
+        <label>Nombre: <input type="text" id="nombre" th:field="*{nombre}" /></label><br />
+        <label>Apellido: <input type="text" id="apellido" th:field="*{apellido}" /></label><br />
+        <label>Direccion: <input type="text" id="direccion" th:field="*{direccion}" /></label><br />
+        <label>Contraseña: <input type="text" id="contrasenha" th:field="*{contrasenha}" /></label><br />
+        <input type="submit" value="Enviar" />
+    </form>
+    <a th:href="@{/usuarios}">Inicio</a><br />
+</body>
+
+</html>

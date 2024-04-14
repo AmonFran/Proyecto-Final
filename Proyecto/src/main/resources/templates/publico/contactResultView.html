@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+
+<head th:replace="~{fragmentos.html::cabecera}">
+</head>
+
+<body>
+    <nav th:replace="~{fragmentos.html::menu}">
+    </nav>
+    <p>
+    <h1>Contacta con nosotros</h1>
+    </p>
+    <p>
+        <img src="/images/ContactImagen.webp">
+    </p>
+    <p>
+    <h1> Datos enviados correctamente</h1> <br />
+
+    Nombre: <span th:text="${nombre}">*</span> <br />
+    Email: <span th:text="${email}">*</span> <br />
+    Tipo de queja: <span th:text="${tipo}">*</span> <br />
+    Comentario: <span th:text="${comentario}">*</span> <br />
+    ¿Acepto las condiciones? <span th:text="${aceptaCondiciones}">*</span> <br />
+    </p>
+</body>
+
+</html>

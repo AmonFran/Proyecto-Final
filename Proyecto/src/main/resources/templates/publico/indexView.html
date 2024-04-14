@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+
+<head th:replace="~{fragmentos.html::cabecera}">
+</head>
+
+<body>
+    <nav th:replace="~{fragmentos.html::menu}">
+    </nav>
+    <p>
+    <h1>Pagina principal</h1>
+    </p>
+    <p>
+    <h2>Bienvenido a nuestra tienda</h2>
+    <h1 id="mensajeError"><span th:text="${mensajeError}"></span></h1>
+    </p>
+    <img src="/images/paginaPrincipal.webp" alt="Imagen de bienvenida">
+</body>
+
+</html>

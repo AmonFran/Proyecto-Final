@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+
+<head th:replace="~{fragmentos.html::cabecera}">
+</head>
+
+<body>
+    <h1>Editar categoria</h1>
+    <form method="post" action="#" th:action="@{/categorias/editar/submit}" th:object="${editCategoria}">
+        <label>Id: <input type="text" readonly id="id" th:field="*{id}" /> </label><br />
+        <label>Nombre: <input type="text" id="nombre" th:field="*{nombre}" /></label><br />
+        <input type="submit" value="Enviar" />
+    </form>
+    <a th:href="@{/categorias}">Inicio</a><br />
+</body>
+
+</html>

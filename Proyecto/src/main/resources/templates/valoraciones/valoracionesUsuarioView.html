@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+
+<head th:replace="~{fragmentos.html::cabecera}">
+</head>
+
+<body>
+    <nav th:replace="~{fragmentos.html::menu}">
+    </nav>
+    <h1>Lista de valoracion de un usuario</h1>
+    <h2 th:text="'Usuario: ' + ${usuario.alias}"></h2>
+    <table border="1px">
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Puntuacion</th>
+                <th>Comentario</th>
+                <th>Borrar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="valoracion : ${listaValoraciones}">
+                <td th:text="${valoracion.producto.nombre}">usuario</td>
+                <td th:text="${valoracion.puntuacion}"></td>
+                <td th:text="${valoracion.comentario}"></td>
+                <td><a th:href="@{/valoraciones/userBorrar/{idVal}(idVal=${valoracion.id})}">Borrar</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/valoraciones/new}">Nuevo</a>
+</body>
+
+</html>

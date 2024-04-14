@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+
+<head th:replace="~{fragmentos.html::cabecera}">
+</head>
+
+<body>
+    <nav th:replace="~{fragmentos.html::menu}">
+    </nav>
+    <hr />
+    <p>
+        <a th:href="@{/productos/nuevo}">Nuevo Producto</a>
+    </p>
+    <p>
+    <h1>Nuestros productos:</h1>
+    </p>
+    <table border="1px">
+        <thead>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Imagen</th>
+            <th>Categoria</th>
+            <th>Comentarios</th>
+            <th>Borrar</th>
+            <th>Editar</th>
+        </thead>
+        <tbody>
+            <tr th:each="producto : ${listaProductos}">
+                <td th:text="${producto.id}"></td>
+                <td th:text="${producto.nombre}"></td>
+                <td th:text="${producto.precio}+€"></td>
+                <td><img th:src="${producto.imagen}" alt="Imagen del producto"></td>
+                <td th:text="${producto.categoria.nombre}"></td>
+                <td><a th:href="@{/valoraciones/producto/{idProd}(idProd=${producto.id})}">Comentarios</a></td>
+                <td><a th:href="@{/productos/borrar/{id}(id=${producto.id})}">Borrar</a></td>
+                <td><a th:href="@{/productos/editar/{id}(id=${producto.id})}">Editar</a></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+
+<head th:replace="~{fragmentos.html::cabecera}">
+</head>
+
+<body>
+    <nav th:replace="~{fragmentos.html::menu}">
+    </nav>
+    <hr />
+    <p>
+        <a th:href="@{/pedidos/nuevo}">Nuevo pedido</a>
+    </p>
+    <p>
+    <h1>Todos los pedidos:</h1>
+    </p>
+    <table border="1px">
+        <thead>
+            <th>Id</th>
+            <th>Fecha</th>
+            <th>Precio</th>
+            <th>Usuario</th>
+            <th>Detalles del pedido</th>
+        </thead>
+        <tbody>
+            <tr th:each="pedido : ${listaPedidos}">
+                <td th:text="${pedido.id}"></td>
+                <td th:text="${pedido.fecha}"></td>
+                <td th:text="${pedido.totalPago}+€"></td>
+                <td th:text="${pedido.usuario.alias}"></td>
+                <td><a th:href="@{/detallesPedido/{id}(id=${pedido.id})}">Detalles del pedido</a></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

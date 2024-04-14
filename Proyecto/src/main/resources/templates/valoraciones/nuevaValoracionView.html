@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+
+<head th:replace="~{fragmentos.html::cabecera}">
+</head>
+
+<body>
+    <h1>Nuevo comentario</h1>
+    <form method="post" action="#" th:action="@{/valoraciones/new/submit}" th:object="${nuevaValoracion}">
+        Producto:
+        <select name="list2" th:field="*{producto}">
+            <option value="0">Select option</option>
+            <option th:each="producto:${listaProductos}" th:value="${producto.id}" th:text="${producto.nombre}">
+            </option>
+        </select><br />
+        <label>Puntuacion: <input type="number" id="puntuacion" th:field="*{puntuacion}" min="0"
+                max="5" /></label><br />
+        <label>Comentario: <input type="text" id="comentario" th:field="*{comentario}" /></label><br/>
+        <input type="submit" id="enviar" value="Enviar"/>
+    </form>
+</body>
+
+</html>

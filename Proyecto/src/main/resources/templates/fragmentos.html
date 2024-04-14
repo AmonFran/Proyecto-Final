@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+
+<head th:fragment="cabecera">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/estilo.css" type="text/css">
+    <title th:text="${titulo}">Titulo</title>
+    <style>
+        img {
+            height: 200px;
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav th:fragment="menu">
+        <ul>
+            <li><a href="/publico/index">Pagina principal</a></li>
+            <li><a href="/publico/contacta">Contacta</a></li>
+            <li><a href="/publico/quienes-somos">Quienes somos</a></li>
+            <li><a href="/productos">Producto</a></li>
+            <li><a href="/categorias">Categorias</a></li>
+            <li sec:authorize="hasRole('ADMIN')" class="nav-item">
+                <a class="nav-link active" aria-current="page" th:href="@{/usuarios}">Usuarios</a>
+            </li>
+            <li class="nav-item ms-md-auto dropdown " sec:authorize="isAuthenticated()">
+                <a href="/pedidos">Pedidos</a>
+            </li>
+            <li class="nav-item ms-md-auto dropdown " sec:authorize="isAuthenticated()">
+                <span sec:authentication="name"></span>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" th:href="@{/usuarios/editarDatos}">Editar
+                            perfil</a>
+                    </li>
+                    <li><a class="dropdown-item" th:href="@{/usuarios/editarContr}">Cambiar Contraseña</a></li>
+                    <li>
+                        <form th:action="@{/logout}" method="post">
+                            <button class="dropdown-item" type="submit">Cerrar sesión</button>
+                        </form>
+                    </li>
+                </ul>
+            </li>
+            <li sec:authorize="!isAuthenticated()">
+                <a th:href="@{/signin}">LogIn</a><br />
+                <a th:href="@{/usuarios/registro}">Registrarse</a><br />
+            </li>
+        </ul>
+    </nav>
+</body>
+
+</html>
