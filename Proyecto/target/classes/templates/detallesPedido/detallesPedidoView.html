@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+
+<head th:replace="~{fragmentos.html::cabecera}">
+</head>
+
+<body>
+    <nav th:replace="~{fragmentos.html::menu}">
+    </nav>
+    <hr />
+    <p>
+        <a th:href="@{/detallesPedido/nuevo/{id}(id=${pedido.id})}">Añadir producto al pedido</a>
+    </p>
+    <p>
+    <h1>Todos los productos del pedido: </h1>
+    </p>
+    <table border="1px">
+        <thead>
+            <th>Id</th>
+            <th>Usuario</th>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Borrar</th>
+        </thead>
+        <tbody>
+            <tr th:each="detallesPedido : ${listaDP}">
+                <td th:text="${detallesPedido.id}"></td>
+                <td th:text="${detallesPedido.pedido.usuario.alias}"></td>
+                <td th:text="${detallesPedido.producto.nombre}"></td>
+                <td th:text="${detallesPedido.producto.precio}"></td>
+                <td th:text="${detallesPedido.cantidad}"></td>
+                <td><a th:href="@{/detallesPedido/borrar/{id}(id=${detallesPedido.id})}">Borrar</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/pedidos}">Atras</a><br />
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+
+    <head th:replace="~{fragmentos.html::cabecera}">
+    </head>
+
+<body>
+    <h1>Nuevo usuario</h1>
+    <form method="post" action="#" th:action="@{/usuarios/editarContr/submit}" th:object="${editUsuarioContrDto}">
+        <label>Id: <input type="text" readonly id="id" th:field="*{id}" /> </label><br />
+        <label>Contraseña: <input type="text" name="contrasenha" value="" /></label><br />
+        <input type="submit" value="Enviar" />
+    </form>
+    <a th:href="@{/usuarios}">Inicio</a><br />
+</body>
+
+</html>

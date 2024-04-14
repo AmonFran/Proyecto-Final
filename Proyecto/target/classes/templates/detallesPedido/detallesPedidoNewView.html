@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+
+<head th:replace="~{fragmentos.html::cabecera}">
+</head>
+
+<body>
+    <h1>Nuevo pedido</h1>
+    <form method="post" action="#" th:action="@{/detallesPedido/nuevo/submit}" th:object="${nuevoDetallePedido}">
+        <label>Id: <input type="hidden" id="id" th:field="*{id}" /> </label><br />
+        <label>Pedido: <input type="hidden" id="pedido" th:field="*{pedido}"></label><br/>
+        <label>Producto:
+            <select name="producto" th:field="*{producto}">
+                <option th:each="prod : ${listaProductos}" th:value="${prod.id}" th:text="${prod.nombre}">
+                </option>
+            </select>
+        </label><br />
+        <label>Cantidad: <input type="number" id="cantidad" th:field="*{cantidad}" /> </label><br />
+        <input type="submit" value="Enviar" />
+    </form>
+    <td><a th:href="@{/detallesPedido/{id}(id=${pedidoP.id})}">Atras</a></td>
+</body>
+
+</html>

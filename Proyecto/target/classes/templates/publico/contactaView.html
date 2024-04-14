@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+
+<head th:replace="~{fragmentos.html::cabecera}">
+</head>
+
+<body>
+    <nav th:replace="~{fragmentos.html::menu}">
+    </nav>
+    <p>
+    <h1>Contacta con nosotros</h1>
+    </p>
+    <p>
+        <img src="/images/ContactImagen.png">
+    </p>
+    <form action="#" method="post" th:action="@{/contacta/submit}" th:object="${formInfo}"
+        enctype="multipart/form-data">
+        Nombre: <input type="text" th:field="*{nombre}" />
+        <br />
+        Email: <input type="text" th:field="*{email}" />
+        <br />
+        <select name="Queja" th:field="*{tipo}">
+            <option value="999">Tipo de queja</option>
+            <option value="0">Queja</option>
+            <option value="1">Consulta</option>
+            <option value="2">Otros</option>
+        </select>
+        <br />
+        Comentario:<input type="text" th:field="*{comentario}" />
+        <br />
+        <label>Acepto las condiciones de servicio:<input type="checkbox" id="acepto"
+                th:field="*{aceptaCondiciones}"></label><br />
+        <input type="submit" value="Enviar" />
+    </form>
+</body>
+
+</html>

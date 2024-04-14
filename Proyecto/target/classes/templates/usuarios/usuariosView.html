@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+
+<head th:replace="~{fragmentos.html::cabecera}">
+</head>
+
+<body>
+    <nav th:replace="~{fragmentos.html::menu}">
+    </nav>
+    <hr />
+    <p>
+        <a th:href="@{/usuarios/nuevo}">Nuevo usuario</a>
+    </p>
+    <p>
+    <h1>Lista usuarios:</h1>
+    </p>
+    <table border="1px">
+        <thead>
+            <th>Alias</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Contraseña</th>
+            <th>Direccion</th>
+            <th>Comentarios</th>
+            <th>Rol</th>
+            <th>Borrar</th>
+            <th>Editar</th>
+        </thead>
+        <tbody>
+            <tr th:each="usuario : ${listaUsuarios}">
+                <td th:text="${usuario.alias}"></td>
+                <td th:text="${usuario.nombre}"></td>
+                <td th:text="${usuario.apellido}"></td>
+                <td th:text="${usuario.contrasenha}"></td>
+                <td th:text="${usuario.direccion}"></td>
+                <td th:text="${usuario.rol}">0</td>
+                <td><a th:href="@{/valoraciones/usuario/{id}(id=${usuario.id})}">Comentarios</a></td>
+                <td><a th:href="@{/usuarios/borrar/{id}(id=${usuario.id})}">Borrar</a></td>
+                <td><a th:href="@{/usuarios/editar/{id}(id=${usuario.id})}">Editar</a></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>
