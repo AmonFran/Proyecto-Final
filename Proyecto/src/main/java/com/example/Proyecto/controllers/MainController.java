@@ -39,7 +39,7 @@ public class MainController {
         }
         model.addAttribute("mensajeError", mensaje);
         model.addAttribute("titulo", "Index");
-        return "publico/indexView";
+        return "publico/paginaPrincipal";
     }
 
     @GetMapping("/contacta")
@@ -69,4 +69,10 @@ public class MainController {
         model.addAttribute("titulo", "Quienes-somos");
         return "publico/aboutUsView";
     }
+
+    @GetMapping("/progreso")
+    public String showEnProceso() {
+        return "publico/paginaEnProceso";
+    }
+    
 }

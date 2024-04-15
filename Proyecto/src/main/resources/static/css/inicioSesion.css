@@ -1,0 +1,18 @@
+header {
+    float: left;
+}
+
+#formulario {
+    clear: both;
+    margin-top: 50%;
+    margin-left: 35%;
+    margin-right: 35%;
+    color: white;
+    background-color: #907DB3;
+    text-align: center;
+    border: 1px solid white;
+}
+
+form input {
+    width: 90%;
+}

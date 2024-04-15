@@ -17,6 +17,44 @@
 </head>
 
 <body>
+    <header th:fragment="navegacion">
+        <div class="row">
+            <div class="col-sm-4">
+                <a href="/publico/index">
+                    <img src="../images/logoEstatico.png" alt="Logo de Sedutriv S.L." title="Logo de Sedutriv S.L."
+                        id="logoHeader" />
+                </a>
+            </div>
+            <div class="col-sm-8 DivFlotarDerecha">
+                <a id="about" href="/publico/progreso">Sobre Nosotros</a>
+                <a id="contact" href="/publico/progreso">Contactanos</a>
+                <a href="/signin"><input type="button" id="logIn" value="Log In"></a>
+                <a href="/registrarse"><input type="button" id="registrarse" value="Registrarse"></a>
+            </div>
+        </div>
+        <nav>
+            <div class="row" id="navegacion">
+                <div class="col-lg-2">
+                    <a href="/publico/progreso" class="enlacesNavegacion">Mochilas</a>
+                </div>
+                <div class="col-lg-2">
+                    <a href="/publico/progreso" class="enlacesNavegacion">Bolsos</a>
+                </div>
+                <div class="col-lg-2">
+                    <a href="/publico/progreso" class="enlacesNavegacion">Bandoleras</a>
+                </div>
+                <div class="col-lg-2">
+                    <a href="/publico/progreso" class="enlacesNavegacion">Cortinas</a>
+                </div>
+                <div class="col-lg-4">
+                    <div id="compraNavegacion">
+                        <img src="../images/carrito.png" id="iconoNavegacion">
+                        <input type="search" placeholder="Buscar..." id="buscadorNavegacion">
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
     <nav th:fragment="menu">
         <ul>
             <li><a href="/publico/index">Pagina principal</a></li>
@@ -50,6 +88,26 @@
             </li>
         </ul>
     </nav>
+    <footer th:fragment="pie">
+        <div class="row">
+            <div class="col-sm-4">
+                <a id="privacidad" href="">Privacidad</a>
+                <a id="cookies" href="">Cookies</a>
+                <a id="legal" href="">Legal</a>
+            </div>
+            <div class="col-sm-4" id="divIconos">
+                <img class="iconos" src="../images/Iconos/logo_Facebook.png" alt="Icono de Facebook"
+                    title="Icono de Facebook" />
+                <img class="iconos" src="../images/Iconos/logo_Instagram.png" alt="Icono de Instagram"
+                    title="Icono de Instagram" />
+                <img class="iconos" src="../images/Iconos/globo.png" alt="Icono de globo" title="Icono de globo" />
+                Español
+            </div>
+            <div class="col-sm-4" id="nombreEmpresa">
+                <span>&#169 2023 Sedutriv</span>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>
