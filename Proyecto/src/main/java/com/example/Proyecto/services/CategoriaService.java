@@ -18,5 +18,5 @@ public interface CategoriaService {
     public Categoria obtenerPorId(Long id);
 
     public void borrar(Long id);
-
+    public String obtenerArticulo(Categoria categoria);
 }

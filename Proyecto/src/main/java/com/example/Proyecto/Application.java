@@ -27,15 +27,15 @@ public class Application {
 	CommandLineRunner initData(ProductoService productoService, CategoriaService categoriaService,
 			UsuarioService usuarioService, PedidoService pedidoService, DetallesPedidoService detallesPedidoService) {
 		return args -> {
-			Categoria sacos = categoriaService.añadir(new Categoria(0L, "Sacos"));
-			Categoria bolsos = categoriaService.añadir(new Categoria(0L, "Bolsos"));
 			Categoria mochilas = categoriaService.añadir(new Categoria(0L, "Mochilas"));
+			Categoria bolsos = categoriaService.añadir(new Categoria(0L, "Bolsos"));
+			Categoria bandoleras = categoriaService.añadir(new Categoria(0L, "Bandoleras"));
 			Categoria cortinas = categoriaService.añadir(new Categoria(0L, "Cortinas"));
-			productoService.añadir(new Producto(0L, "Saco azul", 12D, 3L, "images/viejas/sacoAzul.jpg", sacos));
-			productoService.añadir(new Producto(0L, "Bolso rojo", 50D, 5L, "images/viejas/bolsoRojo.jpg", bolsos));
-			productoService.añadir(new Producto(0L, "Mochila verde", 24D, 1L, "images/viejas/mochilaVerde.jpg", mochilas));
+			productoService.añadir(new Producto(0L, "Mochila verde", 24D, 1L, "../images/viejas/mochilaVerde.jpg", mochilas));
+			productoService.añadir(new Producto(0L, "Bolso rojo", 50D, 5L, "../images/viejas/bolsoRojo.jpg", bolsos));
+			productoService.añadir(new Producto(0L, "Bandolera azul", 12D, 3L, "../images/viejas/sacoAzul.jpg", bandoleras));
 			productoService
-					.añadir(new Producto(0L, "Cortina estampada", 100D, 9L, "images/viejas/cortinaEstampada.jpg", cortinas));
+					.añadir(new Producto(0L, "Cortina estampada", 100D, 9L, "../images/viejas/cortinaEstampada.jpg", cortinas));
 			Usuario user1 = usuarioService
 					.añadir(new Usuario(null, "SirMurloc1", "Sir Finley", "Mrrgglton", "Mrrrgll ", "Uldum", Rol.ADMIN));
 			usuarioService.añadir(new Usuario(null, "fuegoLover", "Ragnaros", "Fire", "cata", "FireLand", Rol.USER));

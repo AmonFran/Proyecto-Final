@@ -1,5 +1,7 @@
 package com.example.Proyecto.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,7 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.Proyecto.domain.Categoria;
+import com.example.Proyecto.domain.Producto;
 import com.example.Proyecto.services.CategoriaService;
+import com.example.Proyecto.services.ProductoService;
 
 @Controller
 @RequestMapping("/categorias")
@@ -17,7 +21,10 @@ public class CategoriaController {
     @Autowired
     CategoriaService categoriaService;
 
-    @GetMapping("")
+    @Autowired
+    ProductoService productoService;
+
+    @GetMapping("/admin")
     public String showCategoria(Model model) {
         model.addAttribute("listaCategorias", categoriaService.obtenerTodos());
         model.addAttribute("titulo", "Categorias");
@@ -54,5 +61,15 @@ public class CategoriaController {
     public String borrarCategoria(@PathVariable Long id) {
         categoriaService.borrar(id);
         return "redirect:/categorias";
+    }
+
+    @GetMapping("/{id}")
+    public String mostrarCategoria(@PathVariable Long id, Model model) {
+        Categoria categoria = categoriaService.obtenerPorId(id);
+        List <Producto> productos = productoService.obtenerPorCategoria(categoria);
+        model.addAttribute("articulo", categoriaService.obtenerArticulo(categoria));
+        model.addAttribute("listaProductos", productos);
+        model.addAttribute("titulo", categoria.getNombre());
+        return "categorias/categoria2View";
     }
 }

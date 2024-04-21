@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity">
+
+<head th:replace="~{fragmentos.html::cabeceraGeneral}">
+</head>
+
+<body>
+    <header th:replace="~{fragmentos.html::navegacion}">
+    </header>
+    <hr />
+    <!-- <p><a th:href="@{/categorias/nuevo}">Nueva categoria</a></p> -->
+    <h1>Nuestros productos:</h1>
+    <aside>
+        <h2>Filtros</h2>
+        <div>
+            Tipo de tela<br />
+
+            <label><input type="checkbox" name="filtroTela1" value="Algodon">Algodón</label>
+            <br />
+            <label><input type="checkbox" name="filtroTela2" value="Plastico">Plastico</label>
+            <br />
+            <label><input type="checkbox" name="filtroTela3" value="Poliester">Poliester</label>
+            <br />
+        </div>
+    </aside>
+    <article>
+        <h1>Todas <span th:text="${articulo}"></span> <span th:text="${titulo}"></span></h1>
+        <figure th:each="producto : ${listaProductos}">
+            <img th:src="${producto.imagen}" th:alt="${producto.nombre}" th:title="${producto.nombre}">
+            <figcaption>
+                <span th:text="${producto.nombre}"></span> <span th:text="${producto.precio}+€"> </span>
+            </figcaption>
+        </figure>
+    </article>
+    <p th:text="${mensajeError}"></p>
+    <footer th:replace="~{fragmentos.html::pie}">
+    </footer>
+</body>
+
+</html>

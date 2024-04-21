@@ -2,6 +2,35 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org"
     xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity">
 
+<head th:fragment="cabeceraMain">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/estilo.css" type="text/css">
+    <title th:text="${titulo}">Titulo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    </style>
+    <link type="text/css" rel="stylesheet" href="../css/principal.css" />
+</head>
+
+<head th:fragment="cabeceraGeneral">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/estilo.css" type="text/css">
+    <title th:text="${titulo}">Titulo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
+    <link type="text/css" rel="stylesheet" href="../css/principal.css" />
+    <link type="text/css" rel="stylesheet" href="../css/PaginaMochilas.css" />
+</head>
+<!-- Cabecera vieja -->
+
 <head th:fragment="cabecera">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,9 +38,9 @@
     <link rel="stylesheet" href="/css/estilo.css" type="text/css">
     <title th:text="${titulo}">Titulo</title>
     <style>
-        img {
-            height: 200px;
+        img{
             width: 200px;
+            height: 200px;
         }
     </style>
 </head>
@@ -20,14 +49,14 @@
     <header th:fragment="navegacion">
         <div class="row">
             <div class="col-sm-4">
-                <a href="/publico/index">
+                <a href="/index">
                     <img src="../images/logoEstatico.png" alt="Logo de Sedutriv S.L." title="Logo de Sedutriv S.L."
                         id="logoHeader" />
                 </a>
             </div>
             <div class="col-sm-8 DivFlotarDerecha">
-                <a id="about" href="/publico/progreso">Sobre Nosotros</a>
-                <a id="contact" href="/publico/progreso">Contactanos</a>
+                <a id="about" href="/progreso">Sobre Nosotros</a>
+                <a id="contact" href="/progreso">Contactanos</a>
                 <a href="/signin"><input type="button" id="logIn" value="Log In"></a>
                 <a href="/registrarse"><input type="button" id="registrarse" value="Registrarse"></a>
             </div>
@@ -35,16 +64,16 @@
         <nav>
             <div class="row" id="navegacion">
                 <div class="col-lg-2">
-                    <a href="/publico/progreso" class="enlacesNavegacion">Mochilas</a>
+                    <a href="/categorias/1" class="enlacesNavegacion">Mochilas</a>
                 </div>
                 <div class="col-lg-2">
-                    <a href="/publico/progreso" class="enlacesNavegacion">Bolsos</a>
+                    <a href="/categorias/2" class="enlacesNavegacion">Bolsos</a>
                 </div>
                 <div class="col-lg-2">
-                    <a href="/publico/progreso" class="enlacesNavegacion">Bandoleras</a>
+                    <a href="/categorias/3" class="enlacesNavegacion">Bandoleras</a>
                 </div>
                 <div class="col-lg-2">
-                    <a href="/publico/progreso" class="enlacesNavegacion">Cortinas</a>
+                    <a href="/categorias/4" class="enlacesNavegacion">Cortinas</a>
                 </div>
                 <div class="col-lg-4">
                     <div id="compraNavegacion">
@@ -57,9 +86,9 @@
     </header>
     <nav th:fragment="menu">
         <ul>
-            <li><a href="/publico/index">Pagina principal</a></li>
-            <li><a href="/publico/contacta">Contacta</a></li>
-            <li><a href="/publico/quienes-somos">Quienes somos</a></li>
+            <li><a href="/index">Pagina principal</a></li>
+            <li><a href="/contacta">Contacta</a></li>
+            <li><a href="/quienes-somos">Quienes somos</a></li>
             <li><a href="/productos">Producto</a></li>
             <li><a href="/categorias">Categorias</a></li>
             <li sec:authorize="hasRole('ADMIN')" class="nav-item">
@@ -91,9 +120,9 @@
     <footer th:fragment="pie">
         <div class="row">
             <div class="col-sm-4">
-                <a id="privacidad" href="">Privacidad</a>
-                <a id="cookies" href="">Cookies</a>
-                <a id="legal" href="">Legal</a>
+                <a id="privacidad" href="/progreso">Privacidad</a>
+                <a id="cookies" href="/progreso">Cookies</a>
+                <a id="legal" href="/progreso">Legal</a>
             </div>
             <div class="col-sm-4" id="divIconos">
                 <img class="iconos" src="../images/Iconos/logo_Facebook.png" alt="Icono de Facebook"
@@ -104,9 +133,12 @@
                 Español
             </div>
             <div class="col-sm-4" id="nombreEmpresa">
-                <span>&#169 2023 Sedutriv</span>
+                <span>&#169 2024 Sedutriv S.L.</span>
             </div>
         </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
     </footer>
 </body>
 

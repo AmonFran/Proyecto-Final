@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.Proyecto.domain.Contactar;
@@ -16,7 +15,6 @@ import com.example.Proyecto.services.ProductoService;
 import jakarta.validation.Valid;
 
 @Controller
-@RequestMapping("/publico")
 public class MainController {
     @Autowired
     ProductoService productoService;
@@ -71,7 +69,8 @@ public class MainController {
     }
 
     @GetMapping("/progreso")
-    public String showEnProceso() {
+    public String showEnProceso(Model model) {
+        model.addAttribute("titulo", "Pagina en proceso");
         return "publico/paginaEnProceso";
     }
     

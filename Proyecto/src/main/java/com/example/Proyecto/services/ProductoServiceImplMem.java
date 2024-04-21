@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.Proyecto.domain.Categoria;
 import com.example.Proyecto.domain.Producto;
 import com.example.Proyecto.repositories.ProductoRepository;
 
@@ -21,6 +22,11 @@ public class ProductoServiceImplMem implements ProductoService {
     @Override
     public List<Producto> obtenerTodos() {
         return productoRepository.findAll();
+    }
+
+    @Override
+    public List<Producto> obtenerPorCategoria(Categoria categoria) {
+        return productoRepository.findByCategoria(categoria);
     }
 
     @Override

@@ -35,4 +35,14 @@ public class CategoriaServiceImplMem implements CategoriaService {
     public void borrar(Long id) {
         categoriaRepository.deleteById(id);
     }
+
+    public String obtenerArticulo(Categoria categoria){
+        if (categoria.getNombre()=="Mochilas" || categoria.getNombre()=="Cortinas"){
+            return "las";
+        }
+        else{
+            return "los";
+        }
+    }
+
 }
