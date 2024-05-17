@@ -42,6 +42,10 @@ img#logoHeader {
     height: 70px;
     float: left;
 }
+img.icoUsuario{
+    width: 7%;
+    height: 70%;
+}
 
 #logIn {
     background-color: #E93232;

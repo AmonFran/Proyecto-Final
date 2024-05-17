@@ -36,6 +36,7 @@ public class SecurityConfig {
                                 headersConfigurer -> headersConfigurer
                                                 .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin));
                 http.authorizeHttpRequests(auth -> auth
+                                // Una vez terminado la parte de FrontEnd y BackEnd 
                                 .requestMatchers("**","/publico/**", "/categorias", "/productos", "/products/porCategoria/**")
                                 .permitAll() // configurarpermisosreales
                                 // .requestMatchers("/valoraciones/userBorrar/**", "/valoraciones/proBorrar/**")
@@ -54,13 +55,13 @@ public class SecurityConfig {
                                                 .loginPage("/signin") // mapping par mostrar formulario de login
                                                 .loginProcessingUrl("/login") // ruta post de /signin
                                                 .failureUrl("/signin")
-                                                .defaultSuccessUrl("/publico/home", true).permitAll())
+                                                .defaultSuccessUrl("/home", true).permitAll())
                                 .logout((logout) -> logout
-                                                .logoutSuccessUrl("/publico/home").permitAll())
+                                                .logoutSuccessUrl("/home").permitAll())
                                 // .csrf(csrf -> csrf.disable())
                                 .rememberMe(Customizer.withDefaults())
                                 .httpBasic(Customizer.withDefaults());
-                http.exceptionHandling(exceptions -> exceptions.accessDeniedPage("/publico/home"));
+                http.exceptionHandling(exceptions -> exceptions.accessDeniedPage("/home"));
                 return http.build();
         }
 }

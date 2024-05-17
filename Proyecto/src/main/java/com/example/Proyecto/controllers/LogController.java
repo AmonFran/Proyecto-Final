@@ -9,7 +9,7 @@ public class LogController {
     @GetMapping("/signin")
     public String showLogin(Model model) {
         model.addAttribute("titulo", "Inicio de sesion");
-        return "sign/inicioSesion";
+        return "sign/signinView";
     }
 
     @GetMapping("/signout")

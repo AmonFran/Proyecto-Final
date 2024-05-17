@@ -27,17 +27,19 @@ public class Producto {
     private Double precio;
     private Long stock;
     private String imagen;
-    private List<String> caracteristicas;
+    // private List<String> caracteristicas;
+    // private String descripcion;
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Categoria categoria;
-    public Producto(Long id, String nombre, Double precio, Long stock, String imagen, Categoria categoria) {
-        this.id = id;
-        this.nombre = nombre;
-        this.precio = precio;
-        this.stock = stock;
-        this.imagen = imagen;
-        this.categoria = categoria;
-    }
+
+    // public Producto(Long id, String nombre, Double precio, Long stock, String imagen, Categoria categoria) {
+    //     this.id = id;
+    //     this.nombre = nombre;
+    //     this.precio = precio;
+    //     this.stock = stock;
+    //     this.imagen = imagen;
+    //     this.categoria = categoria;
+    // }
 
 }
