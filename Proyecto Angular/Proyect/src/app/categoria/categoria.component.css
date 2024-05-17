@@ -1,0 +1,24 @@
+aside {
+    float: inline-start;
+    padding-right: 3em;
+    border-right: 1px solid black;
+}
+
+article {
+    float: inline-start;
+}
+
+article figure {
+    float: right;
+    margin-right: 2em;
+}
+
+footer {
+    clear: both
+}
+
+img {
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+}

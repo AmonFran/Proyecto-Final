@@ -1,0 +1,46 @@
+<header th:fragment="navegacion">
+    <div class="row">
+        <div class="col-sm-4">
+            <a routerLink="">
+                <img src="../../assets/images/logoEstatico.png" alt="Logo de Sedutriv S.L."
+                    title="Logo de Sedutriv S.L." id="logoHeader" />
+            </a>
+        </div>
+        <div class="col-sm-8 DivFlotarDerecha">
+            <a id="about" href="/progreso">Sobre Nosotros</a>
+            <a id="contact" href="/progreso">Contactanos</a>
+            <input type="button" id="logIn" value="Log In" class="btn btn-secondary dropdown-toggle"
+                data-bs-toggle="dropdown" aria-expanded="false">
+            <ul class="dropdown-menu">
+                <form id="formulario" class="form">
+                    <input class="form-control" type="text" name="username" placeholder="Username" />
+                    <input class="form-control" type="password" name="password" placeholder="Password" />
+                    <input class="btn" class="form-control" type="submit" value="Log in" />
+                </form>
+            </ul>
+            <a routerLink="/registro"><input type="button" id="registrarse" value="Registrarse"></a>
+        </div>
+    </div>
+    <nav>
+        <div class="row" id="navegacion">
+            <div class="col-lg-2">
+                <a routerLink="/categoria/1" class="enlacesNavegacion">Mochilas</a>
+            </div>
+            <div class="col-lg-2">
+                <a routerLink="/categoria/2" class="enlacesNavegacion">Bolsos</a>
+            </div>
+            <div class="col-lg-2">
+                <a routerLink="/categoria/3" class="enlacesNavegacion">Bandoleras</a>
+            </div>
+            <div class="col-lg-2">
+                <a routerLink="/categoria/4" class="enlacesNavegacion">Cortinas</a>
+            </div>
+            <div class="col-lg-4">
+                <div id="compraNavegacion">
+                    <img src="../../assets/images/carrito.png" id="iconoNavegacion">
+                    <input type="search" placeholder="Buscar..." id="buscadorNavegacion">
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>

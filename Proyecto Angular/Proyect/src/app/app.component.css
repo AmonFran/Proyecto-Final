@@ -1,0 +1,126 @@
+/* @font-face {
+    font-family: 'Montserrat';
+    src: url('Fonts/Montserrat/static/Montserrat-Regular.ttf') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+} */
+
+* {
+    /* Añadir el resto de fuentes en otro momento*/
+    font-family: 'Montserrat', Arial, Calibri, 'DM Sans';
+
+}
+
+main {
+    background-color: #13051e;
+    color: white
+}
+
+a {
+    color: white;
+}
+
+header>div {
+    border: 1px black solid;
+    background-color: #13051e;
+    text-align: right;
+}
+
+.divFlotarDerecha {
+    float: right;
+}
+
+#about,
+#contact {
+    text-align: center;
+    text-decoration: underline;
+    font-size: 18px;
+    margin-top: 1em;
+}
+
+img#logoHeader {
+    width: 120px;
+    height: 70px;
+    float: left;
+}
+
+img.icoUsuario {
+    width: 7%;
+    height: 70%;
+}
+
+#logIn {
+    background-color: #E93232;
+    color: white;
+    font-size: 150%;
+    border: black solid 1px;
+}
+
+#registrarse {
+    background-color: #907DB3;
+    color: white;
+    font-size: 150%;
+    border: black solid 1px;
+}
+
+#navegacion {
+    background-color: #907DB3;
+    border: solid, black, 1px;
+}
+
+#navegacion>div {
+    text-align: center;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border: #13051e solid 1px;
+    overflow: hidden;
+}
+
+img#iconoNavegacion {
+    width: 40px;
+    height: 40px;
+}
+
+a.enlacesNavegacion {
+    font-size: 2em;
+}
+
+img#imagenPrincipal {
+    width: 100%;
+}
+
+input#buscadorNavegacion {
+    width: 15em;
+    padding-right: 1em;
+}
+
+footer {
+    background-color: #907DB3;
+}
+
+#divIconos {
+    text-align: center;
+    color: white
+}
+
+img.iconos {
+    margin-left: 1em;
+    margin-right: 1em;
+    width: 20px;
+    height: 20px;
+}
+
+#nombreEmpresa span {
+    color: white;
+    float: right;
+    padding-right: 1em;
+}
+
+#divImagenesCategorias {
+    text-align: center;
+}
+
+.imagenesCategorias:first-child {
+    width: 200px;
+    height: 200px;
+}

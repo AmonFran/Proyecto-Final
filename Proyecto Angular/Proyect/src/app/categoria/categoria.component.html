@@ -1,0 +1,28 @@
+<main>
+    <div class="row">
+        <div class="col-3">
+            <aside>
+                <h2>Filtros</h2>
+                <form (change)="onChange()" #form="ngForm">
+                    <div class="form-group">
+                        <div class="form-item">
+                            <label><input class="" type="checkbox" name="filtroTela1" value="Algodon">Algodón</label>
+                        </div>
+                        <div class="form-item">
+                            <label><input type="checkbox" name="filtroTela1" value="Plastico">Plastico</label>
+                        </div>
+                        <div class="form-item">
+                            <label><input type="checkbox" name="filtroTela1" value="Poliester">Poliester</label>
+                        </div>
+                    </div>
+
+                </form>
+
+            </aside>
+        </div>
+        <div class="col-9">
+            <img *ngFor="let producto of productos" src="{{producto.imagen}}" alt="{{producto.nombre}}"
+                title="{{producto.nombre}}">
+        </div>
+    </div>
+</main>
