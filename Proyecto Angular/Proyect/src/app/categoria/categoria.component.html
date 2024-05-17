@@ -3,21 +3,27 @@
         <div class="col-3">
             <aside>
                 <h2>Filtros</h2>
-                <form (change)="onChange()" #form="ngForm">
+                <form (change)="onChange()" [formGroup]="filtrosForm">
                     <div class="form-group">
                         <div class="form-item">
-                            <label><input class="" type="checkbox" name="filtroTela1" value="Algodon">Algodón</label>
+                            <label><input type="checkbox" name="filtroTela" value="Algodon"
+                                    formControlName="Algodon">Algodón</label>
                         </div>
                         <div class="form-item">
-                            <label><input type="checkbox" name="filtroTela1" value="Plastico">Plastico</label>
+                            <label><input type="checkbox" name="filtroTela" value="Plastico"
+                                    formControlName="Plastico">Plastico</label>
                         </div>
                         <div class="form-item">
-                            <label><input type="checkbox" name="filtroTela1" value="Poliester">Poliester</label>
+                            <label><input type="checkbox" name="filtroTela" value="Poliester"
+                                    formControlName="Poliester">Poliester</label>
+                        </div>
+                        <div class="form-item">
+                            <label><input type="checkbox" name="filtroTela" value="Tela"
+                                    formControlName="Tela">Tela</label>
                         </div>
                     </div>
-
+                    <button type="button" (click)="borrar()">Eliminar filtros</button>
                 </form>
-
             </aside>
         </div>
         <div class="col-9">

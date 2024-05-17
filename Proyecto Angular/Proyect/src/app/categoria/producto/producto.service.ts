@@ -117,5 +117,17 @@ export class ProductoService {
         return productosCategoria.slice();
     }
 
-
+    getProductosCategoriaYCaracteristicas(idCategoria: number, filtros: string[]) {
+        let productosFiltrados: Producto[] = []
+        let productosCategoria = this.getProductosCategoria(idCategoria);
+        for (let producto of productosCategoria) {
+            for (let caracteristica of filtros) {
+                if (producto.caracteristicas.indexOf(caracteristica) > -1) {
+                    productosFiltrados.push(producto);
+                    break;
+                }
+            }
+        }
+        return productosFiltrados
+    }
 }

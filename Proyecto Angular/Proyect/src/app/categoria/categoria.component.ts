@@ -1,10 +1,10 @@
-import { Component, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
-import { Producto } from './producto/producto.model';
+import { Component, OnInit } from '@angular/core';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { CategoriaService } from './categoria.service';
-import { ProductoService } from './producto/producto.service';
 import { Subscription } from 'rxjs';
-import { NgForm } from '@angular/forms';
+import { CategoriaService } from './categoria.service';
+import { Producto } from './producto/producto.model';
+import { ProductoService } from './producto/producto.service';
 
 @Component({
   selector: 'app-categoria',
@@ -13,7 +13,8 @@ import { NgForm } from '@angular/forms';
 })
 export class CategoriaComponent implements OnInit {
 
-  @ViewChild('form') filtrosForm: NgForm;
+  filtrosForm: FormGroup;
+  filtros: string[] = [];
 
   subscription: Subscription;
   productos: Producto[];
@@ -23,15 +24,76 @@ export class CategoriaComponent implements OnInit {
 
   ngOnInit(): void {
     this.subscription = this.route.params.subscribe(params => {
-      this.id = +params['id']; // (+) converts string 'id' to a number
+      this.id = +params['id'];
       this.productos = this.productoService.getProductosCategoria(this.id);
-
-      // In a real app: dispatch action to load the details here.
     });
+    this.initForm()
+  }
 
+  initForm() {
+
+    this.filtrosForm = new FormGroup({
+      'Algodon': new FormControl(false),
+      'Plastico': new FormControl(false),
+      'Poliester': new FormControl(false),
+      'Tela': new FormControl(false),
+    });
   }
 
   onChange() {
-    console.log(this.filtrosForm);
+    if (this.filtrosForm.value['Algodon'] == true && this.filtros.indexOf('Algodon') == -1) {
+      this.filtros.push("Algodon")
+    } else if (this.filtrosForm.value['Algodon'] == false) {
+      if (this.filtros.indexOf('Algodon') > -1) {
+        this.filtros.splice(
+          this.filtros.indexOf('Algodon')
+          , 1
+        )
+      }
+    }
+    if (this.filtrosForm.value['Plastico'] == true && this.filtros.indexOf('Plastico') == -1) {
+      this.filtros.push("Plastico")
+    } else if (this.filtrosForm.value['Plastico'] == false) {
+      if (this.filtros.indexOf('Plastico') > -1) {
+        this.filtros.splice(
+          this.filtros.indexOf('Plastico')
+          , 1
+        )
+      }
+    }
+    if (this.filtrosForm.value['Poliester'] == true && this.filtros.indexOf('Poliester') == -1) {
+      this.filtros.push("Poliester")
+    } else if (this.filtrosForm.value['Poliester'] == false) {
+      if (this.filtros.indexOf('Poliester') > -1) {
+        this.filtros.splice(
+          this.filtros.indexOf('Poliester')
+          , 1
+        )
+      }
+    }
+    if (this.filtrosForm.value['Tela'] == true && this.filtros.indexOf('Tela') == -1) {
+      this.filtros.push("Tela")
+    } else if (this.filtrosForm.value['Tela'] == false) {
+      if (this.filtros.indexOf('Tela') > -1) {
+        this.filtros.splice(
+          this.filtros.indexOf('Tela')
+          , 1
+        )
+      }
+    }
+    if (this.filtros.length > 0) {
+      this.filtrar()
+    }
+    else {
+      this.productos = this.productoService.getProductosCategoria(this.id)
+    }
+  }
+
+  borrar() {
+    this.initForm();
+    this.onChange()
+  }
+  filtrar() {
+    this.productos = this.productoService.getProductosCategoriaYCaracteristicas(this.id, this.filtros)
   }
 }
