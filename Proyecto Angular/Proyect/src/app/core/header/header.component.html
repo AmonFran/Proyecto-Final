@@ -9,16 +9,19 @@
         <div class="col-sm-8 DivFlotarDerecha">
             <a id="about" href="/progreso">Sobre Nosotros</a>
             <a id="contact" href="/progreso">Contactanos</a>
-            <input type="button" id="logIn" value="Log In" class="btn btn-secondary dropdown-toggle"
+            <ng-template [ngIf]="!usuarioService.usuarioLogeado">
+               <input type="button" id="logIn" value="Log In" class="btn btn-secondary dropdown-toggle"
                 data-bs-toggle="dropdown" aria-expanded="false">
             <ul class="dropdown-menu">
-                <form id="formulario" class="form">
-                    <input class="form-control" type="text" name="username" placeholder="Username" />
-                    <input class="form-control" type="password" name="password" placeholder="Password" />
+                <form id="formulario" class="form" (ngSubmit)="onLogin(f)" #f="ngForm">
+                    <input class="form-control" type="text" id="alias" name="alias" placeholder="Josefa24" ngModel/>
+                    <input class="form-control" type="password" id="contrasenha" name="contrasenha" placeholder="*******" ngModel/>
                     <input class="btn" class="form-control" type="submit" value="Log in" />
                 </form>
             </ul>
-            <a routerLink="/registro"><input type="button" id="registrarse" value="Registrarse"></a>
+            <a routerLink="/registro"><input type="button" id="registrarse" value="Registrarse" class="btn btn-secondary"></a> 
+            </ng-template>
+            <input type="button" id="logIn" value="Log Out" class="btn btn-secondary" (click)="onLogOut()" *ngIf="usuarioService.usuarioLogeado">
         </div>
     </div>
     <nav>

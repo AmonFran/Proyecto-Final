@@ -38,7 +38,7 @@ export class ProductoService {
             id: 4,
             nombre: 'Cortina estampada',
             precio: 100,
-            imagen: 'assets/images/productos/cortinas/cortinaEstampada.png',
+            imagen: 'assets/images/productos/cortinas/cortinaEstampada.jpg',
             caracteristicas: [''],
             descripcion: '',
             categoria: this.categoriaservice.getCategoria(3),
