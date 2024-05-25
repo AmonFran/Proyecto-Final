@@ -15,6 +15,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CategoriaService } from './categoria/categoria.service';
 import { CommonModule } from '@angular/common';
 import { UsuarioService } from './auth/usuario.service';
+import { ProductoEditComponent } from './categoria/producto/producto-edit/producto-edit.component';
+import { ImagenesService } from './categoria/producto/producto-imagenes/imagenes.service';
+import { ImagenesStorageService } from './categoria/producto/producto-imagenes/conectar-imagenes.service';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,7 @@ import { UsuarioService } from './auth/usuario.service';
     ProductoComponent,
     RegistroComponent,
     LoginComponent,
+    ProductoEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +41,9 @@ import { UsuarioService } from './auth/usuario.service';
   ],
   providers: [
     CategoriaService,
-    UsuarioService
+    UsuarioService,
+    ImagenesService,
+    ImagenesStorageService,
   ],
   bootstrap: [AppComponent]
 })

@@ -11,91 +11,81 @@ export class ProductoService {
             id: 1,
             nombre: 'Mochila verde',
             precio: 24,
-            imagen: 'assets/images/productos/mochilas/mochilaVerde.jpg',
             caracteristicas: ['Verde', 'Plastico'],
             descripcion: '',
-            categoria: this.categoriaservice.getCategoria(0),
+            idCategoria: 1,
         },
         {
             id: 2,
             nombre: 'Bolso rojo',
             precio: 50,
-            imagen: 'assets/images/productos/bolsos/bolsoRojo.jpg',
             caracteristicas: [''],
             descripcion: '',
-            categoria: this.categoriaservice.getCategoria(1),
+            idCategoria: 2,
         },
         {
             id: 3,
             nombre: 'Bandolera azul',
             precio: 12,
-            imagen: 'assets/images/productos/bandoleras/sacoAzul.jpg',
             caracteristicas: [''],
             descripcion: '',
-            categoria: this.categoriaservice.getCategoria(2),
+            idCategoria: 3,
         },
         {
             id: 4,
             nombre: 'Cortina estampada',
             precio: 100,
-            imagen: 'assets/images/productos/cortinas/cortinaEstampada.jpg',
             caracteristicas: [''],
             descripcion: '',
-            categoria: this.categoriaservice.getCategoria(3),
+            idCategoria: 4,
         },
         {
             id: 5,
             nombre: 'Mochila azul',
             precio: 50,
-            imagen: 'assets/images/productos/mochilas/mochilaAzul.png',
             caracteristicas: ['Azul', 'Plastico'],
             descripcion: '',
-            categoria: this.categoriaservice.getCategoria(0),
+            idCategoria: 1,
         },
         {
             id: 6,
             nombre: 'Mochila cactus',
             precio: 50,
-            imagen: 'assets/images/productos/mochilas/mochilaCactus.png',
             caracteristicas: ['Cactus', 'Algodon'],
             descripcion: '',
-            categoria: this.categoriaservice.getCategoria(0),
+            idCategoria: 1,
         },
         {
             id: 7,
             nombre: 'Mochila dragones',
             precio: 50,
-            imagen: 'assets/images/productos/mochilas/mochilaDragones.png',
             caracteristicas: ['Dragon', 'Tela'],
             descripcion: '',
-            categoria: this.categoriaservice.getCategoria(0),
+            idCategoria: 1,
         },
         {
             id: 8,
             nombre: 'Mochila flores',
             precio: 50,
-            imagen: 'assets/images/productos/mochilas/mochilaFlores.png',
             caracteristicas: ['Flores', 'Plastico'],
             descripcion: '',
-            categoria: this.categoriaservice.getCategoria(0),
+            idCategoria: 1,
         },
         {
             id: 9,
             nombre: 'Mochila negra',
             precio: 50,
-            imagen: 'assets/images/productos/mochilas/mochilaNegra.png',
             caracteristicas: ['Negra', 'Plastico'],
             descripcion: '',
-            categoria: this.categoriaservice.getCategoria(0),
+            idCategoria: 1,
         },
         {
             id: 10,
             nombre: 'Mochila Stich',
             precio: 50,
-            imagen: 'assets/images/productos/mochilas/mochilaStitch.png',
             caracteristicas: ['Rosa', 'Dibujo', 'Stitch'],
             descripcion: '',
-            categoria: this.categoriaservice.getCategoria(0),
+            idCategoria: 1,
         }
     ]
 
@@ -107,10 +97,29 @@ export class ProductoService {
         return this.productos.slice();
     }
 
+    getProducto(idProducto: number) {
+        let prod = new Producto(0, '', 0, [''], '', 0)
+        this.productos.forEach(
+            (producto) => {
+                if (producto.id == idProducto) {
+                    prod = producto;
+                }
+            }
+        )
+        return prod;
+    }
+
     getProductosCategoria(idCategoria: number) {
         let productosCategoria: Producto[] = [];
+        this.productos.forEach(
+            (producto) => {
+                if (idCategoria == producto.idCategoria) {
+
+                }
+            }
+        )
         for (let producto of this.productos) {
-            if (producto.categoria.id == idCategoria) {
+            if (producto.idCategoria == idCategoria) {
                 productosCategoria.push(producto);
             }
         }
@@ -129,5 +138,25 @@ export class ProductoService {
             }
         }
         return productosFiltrados
+    }
+
+    agregarProducto(nuevoProducto: Producto) {
+        this.productos.push(nuevoProducto);
+    }
+    actualizarProducto(idEdit: number, editProducto: Producto) {
+        for (let i = 0; i < this.productos.length; i++) {
+            if (this.productos[i].id == idEdit) {
+                this.productos[i] = editProducto;
+                break;
+            }
+        }
+    }
+    borrarProducto(idProducto: number) {
+        for (let i = 0; i < this.productos.length; i++) {
+            if (this.productos[i].id == idProducto) {
+                this.productos.splice(i, 1);
+                break;
+            }
+        }
     }
 }

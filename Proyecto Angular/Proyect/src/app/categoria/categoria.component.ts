@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { CategoriaService } from './categoria.service';
+import { UsuarioService } from '../auth/usuario.service';
 import { Producto } from './producto/producto.model';
 import { ProductoService } from './producto/producto.service';
+import { ImagenesService } from './producto/producto-imagenes/imagenes.service';
 
 @Component({
   selector: 'app-categoria',
@@ -20,7 +21,7 @@ export class CategoriaComponent implements OnInit {
   productos: Producto[];
   id: number;
 
-  constructor(private route: ActivatedRoute, private categoriaService: CategoriaService, private productoService: ProductoService) { }
+  constructor(private route: ActivatedRoute, private router: Router, public usuarioService: UsuarioService, private productoService: ProductoService, private imagenesService: ImagenesService) { }
 
   ngOnInit(): void {
     this.subscription = this.route.params.subscribe(params => {
@@ -95,5 +96,12 @@ export class CategoriaComponent implements OnInit {
   }
   filtrar() {
     this.productos = this.productoService.getProductosCategoriaYCaracteristicas(this.id, this.filtros)
+  }
+
+  getPrimeraImagenProducto(idProducto: number) {
+    return this.imagenesService.getImagenesProducto(idProducto)[0];
+  }
+  enModificar(index: number) {
+    this.router.navigate(['../edit/' + index], { relativeTo: this.route })
   }
 }

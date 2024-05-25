@@ -1,4 +1,9 @@
 <main>
+    <!-- <ng-template [ngIf]='usuarioService.usuarioLogeado && usuarioService.getRolLogeado()!="USER"'> -->
+    <div class="row">
+        <h2><a routerLink="/categoria/new">Nuevo producto</a></h2>
+    </div>
+    <!-- </ng-template> -->
     <div class="row">
         <div class="col-3">
             <aside>
@@ -27,8 +32,8 @@
             </aside>
         </div>
         <div class="col-9">
-            <img *ngFor="let producto of productos" src="{{producto.imagen}}" alt="{{producto.nombre}}"
-                title="{{producto.nombre}}">
+            <img style="cursor:pointer;" *ngFor="let producto of productos" src="{{getPrimeraImagenProducto(producto.id).imagenPath}}"
+                alt="{{producto.nombre}}" title="{{producto.nombre}}" (click)="enModificar(producto.id)">
         </div>
     </div>
 </main>

@@ -1,0 +1,64 @@
+<form [formGroup]="productoForm" (ngSubmit)="onSubmit()" class="formularioProducto">
+    <div class="row">
+        <div class="col-10">
+            <input type="text" class="form-control" id="nombre" placeholder="Nombre del producto"
+                formControlName="nombre">
+        </div>
+        <div class="col-2">
+            <input type="number" class="form-control" id="precio" placeholder="0,0 €" formControlName="precio">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-5">
+            <select class="form-control" id="categoria" formControlName="categoria" [(ngModel)]='selected'>
+                <option value="0">Selecciona una Categoria</option>
+                <option *ngFor="let categoria of categorias; let i=index" value="{{i+1}}">{{categoria.nombre}}</option>
+            </select>
+        </div>
+        <div class="col-7">
+            <input type="text" class="form-control" id="descripcion" placeholder="Breve descripcion"
+                formControlName="descripcion">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <input type="text" class="form-control" id="caracteristicas" placeholder="Algodon, Azul"
+                formControlName="caracteristicas">
+        </div>
+    </div>
+    <span>Añadir Imagenes</span>
+    <div class="row">
+        <div class="col-2">
+            <button type="button" class="btn btn-danger" (click)="onDeleteImagenes()" [disabled]="!editMode">Borrar
+                Imagenes</button>
+        </div>
+    </div>
+    <div class="col-12" formArrayName="imagenes">
+        <div class="row" *ngFor="let imagenesControl of retFormImagenes.controls;let i=index" [formGroupName]="i"
+            style="margin-top:10px">
+            <div class="col-5">
+                <input type="text" class="form-control" formControlName="imgName">
+            </div>
+            <div class="col-5">
+                <input type="file" class="form-control" formControlName="imagen"
+                    (change)="onFileChange($event,'image',i)">
+            </div>
+            <div class="col-2">
+                <button type="button" class="btn btn-danger" (click)="onDeleteImagen(i)">X</button>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="form-group form-row">
+        <div class="col-2">
+            <button type='button' class="btn btn-success" (click)="onAddImagen()">Añadir
+                imagen</button>
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-success" [disabled]="!productoForm.valid">Save</button>
+        <button type="reset" class="btn btn-danger">Limpiar formulario</button>
+        <button type="button" class="btn btn-success" [disabled]="!editMode"
+            (click)="enEliminar()">Borrar</button>
+    </div>
+</form>

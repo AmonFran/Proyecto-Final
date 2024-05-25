@@ -69,4 +69,15 @@ export class UsuarioService {
         this.usuarioLogeado = null as unknown as Usuario
     }
 
+    getRolLogeado(): string {
+        let user = this.usuarioLogeado;
+        if (user.rol == Rol.ADMIN) {
+            return "ADMIN";
+        } else if (user.rol == Rol.MANAGER) {
+            return "MANAGER"
+        }
+        else {
+            return "USER"
+        }
+    }
 }

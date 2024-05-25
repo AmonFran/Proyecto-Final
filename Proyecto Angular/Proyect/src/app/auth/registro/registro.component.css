@@ -9,6 +9,6 @@ main {
     border: 1px solid white;
 }
 
-form input {
+#formulario input {
     width: 90%;
 }

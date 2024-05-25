@@ -27,6 +27,17 @@ export class CategoriaService {
   constructor() { }
 
   getCategoria(index: number) {
-    return this.categorias.slice()[index];
+    let cat = new Categoria(0, "");
+    this.categorias.forEach(
+      (categoria) => {
+        if (categoria.id == index) {
+          cat = categoria
+        }
+      }
+    )
+    return cat
+  }
+  getCategorias() {
+    return this.categorias.slice();
   }
 }
