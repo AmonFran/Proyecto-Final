@@ -5,26 +5,13 @@ import { Categoria } from './categoria.model';
   providedIn: 'root'
 })
 export class CategoriaService {
-  categorias: Categoria[] = [
-    {
-      id: 1,
-      nombre: 'Mochilas',
-    },
-    {
-      id: 2,
-      nombre: 'Bolsos',
-    },
-    {
-      id: 3,
-      nombre: 'Bandoleras',
-    },
-    {
-      id: 4,
-      nombre: 'Cortinas',
-    },
-  ]
+  categorias: Categoria[] = []
 
   constructor() { }
+
+  cargarCategorias(categorias: Categoria[]) {
+    this.categorias = categorias;
+  }
 
   getCategoria(index: number) {
     let cat = new Categoria(0, "");

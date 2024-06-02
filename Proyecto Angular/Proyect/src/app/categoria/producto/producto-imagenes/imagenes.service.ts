@@ -3,18 +3,7 @@ import { Imagen } from "./imagen.model";
 
 export class ImagenesService {
     imagenesChanged = new Subject<Imagen[]>;
-    private imagenes: Imagen[] = [
-        new Imagen(1, 1, 'Mochila verde frontal', 'assets/images/productos/mochilas/mochilaVerde.jpg'),
-        new Imagen(2, 2, 'Bolso rojo', 'assets/images/productos/bolsos/bolsoRojo.jpg'),
-        new Imagen(3, 3, 'Bandolera azul frontal', 'assets/images/productos/bandoleras/sacoAzul.jpg'),
-        new Imagen(4, 4, 'Cortina estampada', 'assets/images/productos/cortinas/cortinaEstampada.jpg'),
-        new Imagen(5, 5, '', 'assets/images/productos/mochilas/mochilaAzul.png'),
-        new Imagen(6, 6, '', 'assets/images/productos/mochilas/mochilaCactus.png'),
-        new Imagen(7, 7, '', 'assets/images/productos/mochilas/mochilaDragones.png'),
-        new Imagen(8, 8, '', 'assets/images/productos/mochilas/mochilaFlores.png'),
-        new Imagen(9, 9, '', 'assets/images/productos/mochilas/mochilaNegra.png'),
-        new Imagen(10, 10, '', 'assets/images/productos/mochilas/mochilaStitch.png'),
-    ];
+    private imagenes: Imagen[] = [];
 
     cargarImagenes(imagenes: Imagen[]) {
         this.imagenes = imagenes.slice();
@@ -69,4 +58,5 @@ export class ImagenesService {
         }
         this.imagenesChanged.next(this.imagenes.slice());
     }
+
 }

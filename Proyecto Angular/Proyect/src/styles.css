@@ -2,5 +2,7 @@
 
 body {
     background-color: #13051e;
-    color: white
+    color: white;
+    margin: 0% !important;
+    padding: 0% !important;
 }

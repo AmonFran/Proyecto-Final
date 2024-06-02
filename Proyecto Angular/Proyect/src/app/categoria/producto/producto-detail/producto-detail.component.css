@@ -1,0 +1,11 @@
+img {
+    width: 500px;
+    height: 500px;
+}
+
+button#anadirCarrito{
+    background-color: #E93232;
+}
+button#anadirCarrito:hover{
+    background-color: #df5252;
+}

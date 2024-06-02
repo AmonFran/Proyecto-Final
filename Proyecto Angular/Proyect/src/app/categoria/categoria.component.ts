@@ -17,18 +17,26 @@ export class CategoriaComponent implements OnInit {
   filtrosForm: FormGroup;
   filtros: string[] = [];
 
-  subscription: Subscription;
+  subscriptionParametros: Subscription;
+  subscriptionProductos: Subscription;
   productos: Producto[];
   id: number;
 
   constructor(private route: ActivatedRoute, private router: Router, public usuarioService: UsuarioService, private productoService: ProductoService, private imagenesService: ImagenesService) { }
 
   ngOnInit(): void {
-    this.subscription = this.route.params.subscribe(params => {
+    this.subscriptionParametros = this.route.params.subscribe(params => {
       this.id = +params['id'];
       this.productos = this.productoService.getProductosCategoria(this.id);
     });
+    this.subscriptionProductos = this.productoService.productosChanged.subscribe(
+      (productos: Producto[]) => {
+        this.productos = productos;
+      }
+    )
     this.initForm()
+    console.log(this.usuarioService.getRolLogeado());
+    
   }
 
   initForm() {
@@ -42,6 +50,7 @@ export class CategoriaComponent implements OnInit {
   }
 
   onChange() {
+    // Es bastante engorroso, pero no hay otra forma
     if (this.filtrosForm.value['Algodon'] == true && this.filtros.indexOf('Algodon') == -1) {
       this.filtros.push("Algodon")
     } else if (this.filtrosForm.value['Algodon'] == false) {
@@ -102,6 +111,12 @@ export class CategoriaComponent implements OnInit {
     return this.imagenesService.getImagenesProducto(idProducto)[0];
   }
   enModificar(index: number) {
-    this.router.navigate(['../edit/' + index], { relativeTo: this.route })
+    if (this.usuarioService.usuarioLogeado && this.usuarioService.getRolLogeado() != "USER") {
+      this.router.navigate(['../edit/' + index], { relativeTo: this.route });
+    }
+    else{
+      this.router.navigate(['../../producto/' + index], { relativeTo: this.route });
+
+    }
   }
 }

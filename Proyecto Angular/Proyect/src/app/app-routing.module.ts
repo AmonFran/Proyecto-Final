@@ -5,6 +5,7 @@ import { CategoriaComponent } from './categoria/categoria.component';
 import { RegistroComponent } from './auth/registro/registro.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ProductoEditComponent } from './categoria/producto/producto-edit/producto-edit.component';
+import { ProductoDetailComponent } from './categoria/producto/producto-detail/producto-detail.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,9 @@ const routes: Routes = [
   },
   {
     path: 'categoria/:id', component: CategoriaComponent
+  },
+  {
+    path: 'producto/:id', component: ProductoDetailComponent
   },
   {
     path: 'registro', component: RegistroComponent

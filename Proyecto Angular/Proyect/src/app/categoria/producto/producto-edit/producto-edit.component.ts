@@ -8,6 +8,7 @@ import { ImagenesStorageService } from '../producto-imagenes/conectar-imagenes.s
 import { ImagenesService } from '../producto-imagenes/imagenes.service';
 import { Producto } from '../producto.model';
 import { Imagen } from '../producto-imagenes/imagen.model';
+import { ConectarProductoService } from '../conectar-producto.service';
 
 @Component({
   selector: 'app-producto-edit',
@@ -28,7 +29,8 @@ export class ProductoEditComponent implements OnInit {
     private categoriaService: CategoriaService,
     private productoService: ProductoService,
     private imagenesService: ImagenesService,
-    private imagenesStorageService: ImagenesStorageService,) {
+    private imagenesStorageService: ImagenesStorageService,
+    private productoStorageService: ConectarProductoService) {
   }
 
   ngOnInit(): void {
@@ -48,7 +50,7 @@ export class ProductoEditComponent implements OnInit {
     let productoPrecio = 0;
     let productoCategoria = 0;
     let productoDescripcion = '';
-    let productoCaracteristicas = [''];
+    let productoCaracteristicas = '';
     this.selected = 0;
     let productoImagenes = new FormArray<any>([]);
     if (this.editMode) {
@@ -134,14 +136,15 @@ export class ProductoEditComponent implements OnInit {
     if (this.editMode) {
       // Actualizar Vino
       // this.vinosStorageService.actualizarVino(nuevoProducto);
+      this.productoStorageService.actualizarProducto(nuevoProducto);
       this.productoService.actualizarProducto(this.idEdit, nuevoProducto);
 
       // Actualizar Imagenes
       this.imagenesService.actualizarImagenes(nuevasImagenes);
-      // this.imagenesStorageService.actualizarImagenes(nuevasImagenes, nuevoProducto.id);
+      this.imagenesStorageService.actualizarImagenes(nuevasImagenes, nuevoProducto.id);
       this.archivos.forEach(archivo => {
         if (archivo) {
-          // this.imagenesStorageService.guardarArchivo(archivo);
+          this.imagenesStorageService.guardarArchivo(archivo);
         }
       })
       // Ir a la pagina de los productos
@@ -154,12 +157,12 @@ export class ProductoEditComponent implements OnInit {
         this.imagenesService.insertarImagenes(nuevasImagenes);
         this.archivos.forEach(archivo => {
           if (archivo) {
-            // this.imagenesStorageService.guardarArchivo(archivo);
+            this.imagenesStorageService.guardarArchivo(archivo);
           }
         })
       }
       else {
-        // this.vinosStorageService.guardarVino(nuevoProducto);
+        this.productoStorageService.guardarProducto(nuevoProducto);
         this.productoService.agregarProducto(nuevoProducto)
       }
       this.router.navigate(['../' + nuevoProducto.idCategoria], { relativeTo: this.route })

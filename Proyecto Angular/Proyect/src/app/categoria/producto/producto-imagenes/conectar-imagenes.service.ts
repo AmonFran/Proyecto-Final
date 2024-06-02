@@ -4,7 +4,9 @@ import { ImagenesService } from "./imagenes.service";
 import { environment } from "src/environments/environment";
 import { Imagen } from "./imagen.model";
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class ImagenesStorageService {
 
     constructor(private http: HttpClient, private imagenesService: ImagenesService) {
@@ -41,7 +43,6 @@ export class ImagenesStorageService {
         }
         const formData = new FormData();
         formData.append('image', nuevosArchivos);
-        // console.log("sdfadsfsdaf");
         return this.http.post(`${environment.apiUrl}archivo-post`, formData).subscribe(
             (response: any) => {
                 console.log(response);
@@ -53,59 +54,10 @@ export class ImagenesStorageService {
         const formData = new FormData();
         formData.append('image', archivo);
         console.log(archivo);
-        // return this.http.delete(`${environment.apiUrl}archivo-delete`).subscribe(
-        //     (response: any) => {
-        //         console.log(response);
-        //     }
-        // )
+        return this.http.delete(`${environment.apiUrl}archivo-delete`).subscribe(
+            (response: any) => {
+                console.log(response);
+            }
+        )
     }
-
-    // guardarImageness(mFormData: any, mImage: File) {
-    //     const HttpUploadOptions = {
-    //         headers: new HttpHeaders({ "Content-Type": "multipart/form-data" })
-    //     }
-    //     const formData = new FormData();
-    //     formData.append('data', mFormData);
-    //     formData.append('image', mImage);
-    //     return this.http.post(`${environment.apiUrl}upload-post`, formData, HttpUploadOptions).subscribe(
-    //         (response: any) => {
-    //             console.log(response);
-    //         }
-    //     )
-    // }
-
-
-    // guardarImagenes(nuevasImagenes: Imagen[], nuevosArchivos: File[]) {
-    //     const HttpUploadOptions = {
-    //         headers: new HttpHeaders({ "Content-Type": "multipart/form-data" })
-    //     }
-    //     console.log(nuevasImagenes);
-    //     console.log("------------------------------");
-    //     console.log(nuevosArchivos);
-    //     const formData = new FormData();
-    //     for (let i = 0; i < nuevasImagenes.length; i++) {
-    //         formData.append('data' + i, nuevasImagenes[i]);
-    //     }
-    //     for (let i = 0; i < nuevosArchivos.length; i++) {
-    //         formData.append('image' + i, nuevosArchivos[i]);
-
-    //     }
-    //     return this.http.post(`${environment.apiUrl}imagen-post`, {
-    //         body: {
-    //             'imagenes': nuevasImagenes,
-    //             'archivos': nuevosArchivos,
-    //         }
-    //     }).subscribe(
-    //         (response: any) => {
-    //             console.log(response);
-    //         }
-    //     )
-    //     formData.append('data', mFormData);
-    //     formData.append('image', mImage);
-    //     return this.http.post(`${environment.apiUrl}upload-post`, formData).subscribe(
-    //         (response: any) => {
-    //             console.log(response);
-    //         }
-    //     )
-    // }
 }

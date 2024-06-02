@@ -1,11 +1,11 @@
 <main>
-    <!-- <ng-template [ngIf]='usuarioService.usuarioLogeado && usuarioService.getRolLogeado()!="USER"'> -->
+    <ng-template [ngIf]='usuarioService.usuarioLogeado && usuarioService.getRolLogeado()!="USER"'>
     <div class="row">
         <h2><a routerLink="/categoria/new">Nuevo producto</a></h2>
     </div>
-    <!-- </ng-template> -->
+    </ng-template>
     <div class="row">
-        <div class="col-3">
+        <div class="col-1 filtros">
             <aside>
                 <h2>Filtros</h2>
                 <form (change)="onChange()" [formGroup]="filtrosForm">
@@ -27,13 +27,16 @@
                                     formControlName="Tela">Tela</label>
                         </div>
                     </div>
-                    <button type="button" (click)="borrar()">Eliminar filtros</button>
+                    <button type="button" (click)="borrar()">Sin filtros</button>
                 </form>
             </aside>
         </div>
-        <div class="col-9">
-            <img style="cursor:pointer;" *ngFor="let producto of productos" src="{{getPrimeraImagenProducto(producto.id).imagenPath}}"
-                alt="{{producto.nombre}}" title="{{producto.nombre}}" (click)="enModificar(producto.id)">
+        <div class="col-11">
+            <figure *ngFor="let producto of productos">
+                <img style="cursor:pointer;" src="{{getPrimeraImagenProducto(producto.id).imagenPath}}"
+                    alt="{{producto.nombre}}" title="{{producto.nombre}}" (click)="enModificar(producto.id)">
+                <figcaption class="nombre">{{producto.nombre}} {{producto.precio}}€</figcaption>
+            </figure>
         </div>
     </div>
 </main>

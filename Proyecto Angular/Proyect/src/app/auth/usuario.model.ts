@@ -6,7 +6,7 @@ export class Usuario {
     nombre: string;
     apellido: string;
     direccion: string;
-    rol: Rol = Rol.USER;
+    rol: string = "USER";
 
     constructor(id: number, email: string, alias: string, contrasenha: string, nombre: string, apellido: string, direccion: string) {
         this.id = id;
@@ -17,7 +17,4 @@ export class Usuario {
         this.apellido = apellido;
         this.direccion = direccion;
     }
-}
-export enum Rol {
-    USER, MANAGER, ADMIN
 }

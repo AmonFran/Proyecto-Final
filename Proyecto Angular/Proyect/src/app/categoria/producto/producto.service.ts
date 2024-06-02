@@ -1,96 +1,20 @@
 import { Injectable } from "@angular/core";
-import { CategoriaService } from "../categoria.service";
 import { Producto } from "./producto.model";
+import { Subject } from "rxjs";
 
 @Injectable({
     providedIn: 'root'
 })
 export class ProductoService {
-    productos: Producto[] = [
-        {
-            id: 1,
-            nombre: 'Mochila verde',
-            precio: 24,
-            caracteristicas: ['Verde', 'Plastico'],
-            descripcion: '',
-            idCategoria: 1,
-        },
-        {
-            id: 2,
-            nombre: 'Bolso rojo',
-            precio: 50,
-            caracteristicas: [''],
-            descripcion: '',
-            idCategoria: 2,
-        },
-        {
-            id: 3,
-            nombre: 'Bandolera azul',
-            precio: 12,
-            caracteristicas: [''],
-            descripcion: '',
-            idCategoria: 3,
-        },
-        {
-            id: 4,
-            nombre: 'Cortina estampada',
-            precio: 100,
-            caracteristicas: [''],
-            descripcion: '',
-            idCategoria: 4,
-        },
-        {
-            id: 5,
-            nombre: 'Mochila azul',
-            precio: 50,
-            caracteristicas: ['Azul', 'Plastico'],
-            descripcion: '',
-            idCategoria: 1,
-        },
-        {
-            id: 6,
-            nombre: 'Mochila cactus',
-            precio: 50,
-            caracteristicas: ['Cactus', 'Algodon'],
-            descripcion: '',
-            idCategoria: 1,
-        },
-        {
-            id: 7,
-            nombre: 'Mochila dragones',
-            precio: 50,
-            caracteristicas: ['Dragon', 'Tela'],
-            descripcion: '',
-            idCategoria: 1,
-        },
-        {
-            id: 8,
-            nombre: 'Mochila flores',
-            precio: 50,
-            caracteristicas: ['Flores', 'Plastico'],
-            descripcion: '',
-            idCategoria: 1,
-        },
-        {
-            id: 9,
-            nombre: 'Mochila negra',
-            precio: 50,
-            caracteristicas: ['Negra', 'Plastico'],
-            descripcion: '',
-            idCategoria: 1,
-        },
-        {
-            id: 10,
-            nombre: 'Mochila Stich',
-            precio: 50,
-            caracteristicas: ['Rosa', 'Dibujo', 'Stitch'],
-            descripcion: '',
-            idCategoria: 1,
-        }
-    ]
+    productosChanged = new Subject<Producto[]>;
+    productos: Producto[] = []
 
-    constructor(private categoriaservice: CategoriaService) {
+    constructor() {
 
+    }
+
+    cargarProductos(productos: Producto[]) {
+        this.productos = productos;
     }
 
     getProductos() {
@@ -98,7 +22,7 @@ export class ProductoService {
     }
 
     getProducto(idProducto: number) {
-        let prod = new Producto(0, '', 0, [''], '', 0)
+        let prod = new Producto(0, '', 0, '', '', 0)
         this.productos.forEach(
             (producto) => {
                 if (producto.id == idProducto) {
@@ -142,6 +66,7 @@ export class ProductoService {
 
     agregarProducto(nuevoProducto: Producto) {
         this.productos.push(nuevoProducto);
+        this.productosChanged.next(this.productos.slice())
     }
     actualizarProducto(idEdit: number, editProducto: Producto) {
         for (let i = 0; i < this.productos.length; i++) {
@@ -150,6 +75,7 @@ export class ProductoService {
                 break;
             }
         }
+        this.productosChanged.next(this.productos.slice())
     }
     borrarProducto(idProducto: number) {
         for (let i = 0; i < this.productos.length; i++) {
@@ -158,5 +84,6 @@ export class ProductoService {
                 break;
             }
         }
+        this.productosChanged.next(this.productos.slice())
     }
 }
