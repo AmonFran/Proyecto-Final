@@ -6,6 +6,11 @@ import { RegistroComponent } from './auth/registro/registro.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ProductoEditComponent } from './categoria/producto/producto-edit/producto-edit.component';
 import { ProductoDetailComponent } from './categoria/producto/producto-detail/producto-detail.component';
+import { AboutUsComponent } from './informacion/about-us/about-us.component';
+import { ContactComponent } from './informacion/contact/contact.component';
+import { PrivacyComponent } from './informacion/privacy/privacy.component';
+import { CookiesComponent } from './informacion/cookies/cookies.component';
+import { LegalComponent } from './informacion/legal/legal.component';
 
 const routes: Routes = [
   {
@@ -28,7 +33,26 @@ const routes: Routes = [
   },
   {
     path: 'login', component: LoginComponent
+  },
+  {
+    path: 'aboutUs', component: AboutUsComponent
+  },
+  {
+    path: 'contact', component: ContactComponent
+  },
+  {
+    path: 'privacity', component: PrivacyComponent
+  },
+  {
+    path: 'cookies', component: CookiesComponent
+  },
+  {
+    path: 'legal', component: LegalComponent
+  },
+  {
+    path: '**', component: MainComponent
   }
+
 ];
 
 @NgModule({

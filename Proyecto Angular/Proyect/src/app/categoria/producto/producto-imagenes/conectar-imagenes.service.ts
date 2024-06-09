@@ -14,6 +14,7 @@ export class ImagenesStorageService {
     }
 
     guardarImagenes(nuevasImagenes: Imagen[]) {
+        console.log(nuevasImagenes);
         return this.http.post(`${environment.apiUrl}imagen-post`, nuevasImagenes).subscribe(
             (response: any) => {
                 console.log(response);
@@ -21,16 +22,17 @@ export class ImagenesStorageService {
         )
     }
 
-    actualizarImagenes(nuevasImagenes: Imagen[], idVino: number) {
-        return this.http.put(`${environment.apiUrl}imagen-put`, { nuevasImagenes, idVino }).subscribe(
+    actualizarImagenes(nuevasImagenes: Imagen[], idProducto: number) {
+        console.log(nuevasImagenes);
+        return this.http.put(`${environment.apiUrl}imagen-put`, { nuevasImagenes, idProducto }).subscribe(
             (response: any) => {
                 console.log(response);
             }
         )
     }
 
-    borrarImagenes(idVino: number) {
-        return this.http.delete(`${environment.apiUrl}imagen-delete`, { body: idVino }).subscribe(
+    borrarImagenes(idProducto: number) {
+        return this.http.delete(`${environment.apiUrl}imagen-delete`, { body: idProducto }).subscribe(
             (response: any) => {
                 console.log(response);
             }
@@ -44,17 +46,6 @@ export class ImagenesStorageService {
         const formData = new FormData();
         formData.append('image', nuevosArchivos);
         return this.http.post(`${environment.apiUrl}archivo-post`, formData).subscribe(
-            (response: any) => {
-                console.log(response);
-            }
-        )
-    }
-
-    borrarArchivo(archivo: File) {
-        const formData = new FormData();
-        formData.append('image', archivo);
-        console.log(archivo);
-        return this.http.delete(`${environment.apiUrl}archivo-delete`).subscribe(
             (response: any) => {
                 console.log(response);
             }

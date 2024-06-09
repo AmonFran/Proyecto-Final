@@ -8,12 +8,11 @@
 * {
     /* Añadir el resto de fuentes en otro momento*/
     font-family: 'Montserrat', Arial, Calibri, 'DM Sans';
-
 }
-
 main {
     background-color: #13051e;
-    color: white
+    color: white;
+    overflow: hidden;
 }
 
 a {
@@ -24,6 +23,7 @@ header>div {
     border: 1px black solid;
     background-color: #13051e;
     text-align: right;
+    overflow: hidden;
 }
 
 .divFlotarDerecha {

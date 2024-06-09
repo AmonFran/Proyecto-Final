@@ -1,4 +1,3 @@
-import { Categoria } from "../categoria.model";
 
 export class Producto {
     id: number;

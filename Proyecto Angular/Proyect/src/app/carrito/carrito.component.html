@@ -1,0 +1,31 @@
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th class="primera">Imagen</th>
+                <th class="segunda">Nombre y Descripcion</th>
+                <th class="tercera">Precio</th>
+                <th class="cuarta"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let detalle of detallesPedido">
+                <td>
+                    <img src="{{imagenesService.getImagenesProducto(detalle.idProducto)[0].imagenPath}}"
+                        alt="{{imagenesService.getImagenesProducto(detalle.idProducto)[0].nombre}}"
+                        title="{{imagenesService.getImagenesProducto(detalle.idProducto)[0].nombre}}">
+                </td>
+                <td>
+                    <h4>{{productoService.getProducto(detalle.idProducto).nombre}}</h4>
+                    {{productoService.getProducto(detalle.idProducto).descripcion}}
+                </td>
+                <td>
+                    {{productoService.getProducto(detalle.idProducto).precio}} €
+                </td>
+                <td>
+                    <button class="btn btn-danger" (click)="eliminar(detalle)">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

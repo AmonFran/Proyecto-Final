@@ -1,0 +1,22 @@
+div {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    background-color: #907DB3;
+    color: white;
+}
+
+hr {
+    color: white;
+    border: 3px solid;
+}
+
+a {
+    font-weight: bold;
+    color: #907DB3;
+}

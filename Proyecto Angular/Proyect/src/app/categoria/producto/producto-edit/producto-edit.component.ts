@@ -81,9 +81,9 @@ export class ProductoEditComponent implements OnInit {
     }
     this.productoForm = new FormGroup({
       'id': new FormControl(productoId),
-      "nombre": new FormControl(productoNombre),
-      "precio": new FormControl(productoPrecio),
-      "categoria": new FormControl(productoCategoria),
+      "nombre": new FormControl(productoNombre, Validators.required),
+      "precio": new FormControl(productoPrecio, Validators.min(1)),
+      "categoria": new FormControl(productoCategoria, Validators.min(1)),
       "descripcion": new FormControl(productoDescripcion),
       "caracteristicas": new FormControl(productoCaracteristicas),
       "imagenes": productoImagenes
@@ -127,15 +127,13 @@ export class ProductoEditComponent implements OnInit {
           this.productoForm.value['imagenes'][i].idImagen,
           this.productoForm.value['imagenes'][i].idImagenProducto,
           this.productoForm.value['imagenes'][i].imgName,
-          "assets/images/productos/" + this.categoriaService.getCategoria(nuevoProducto.idCategoria).nombre.toLowerCase() + "/" + this.archivos[i].name
-          // "http://localhost/api/assets/images/vinos/" + this.archivos[i].name
+          "http://localhost/api/assets/images/productos/" + this.archivos[i].name
         ));
       }
 
     }
     if (this.editMode) {
-      // Actualizar Vino
-      // this.vinosStorageService.actualizarVino(nuevoProducto);
+      // Actualizar producto
       this.productoStorageService.actualizarProducto(nuevoProducto);
       this.productoService.actualizarProducto(this.idEdit, nuevoProducto);
 
@@ -152,8 +150,9 @@ export class ProductoEditComponent implements OnInit {
     }
     else {
       if (nuevasImagenes[0]) {
-        // this.vinosStorageService.guardarVinoImagenes(nuevoProducto, nuevasImagenes);
+        this.productoStorageService.guardarProducto(nuevoProducto);
         this.productoService.agregarProducto(nuevoProducto)
+        this.imagenesStorageService.guardarImagenes(nuevasImagenes);
         this.imagenesService.insertarImagenes(nuevasImagenes);
         this.archivos.forEach(archivo => {
           if (archivo) {
@@ -174,8 +173,8 @@ export class ProductoEditComponent implements OnInit {
     (<FormArray>this.productoForm.get('imagenes')).removeAt(index);
   }
   onDeleteImagenes() {
-    // this.imagenesStorageService.borrarImagenes(this.productoService.getProductos()[this.idEdit].id);
-    this.imagenesService.borrarImagenes(this.productoService.getProductos()[this.idEdit].id);
+    this.imagenesStorageService.borrarImagenes(this.idEdit);
+    this.imagenesService.borrarImagenes(this.idEdit);
     this.router.navigate(['../..'], { relativeTo: this.route });
   }
   onFileChange(event: any, field: any, index: number) {
@@ -202,6 +201,7 @@ export class ProductoEditComponent implements OnInit {
 
   enEliminar() {
     this.onDeleteImagenes();
+    this.productoStorageService.borrarProducto(this.idEdit)
     // this.vinosStorageService.borrarVino(this.vinosService.getVino(this.idEdit).Id);
     this.router.navigate(['../../' + this.productoService.getProducto(this.idEdit).idCategoria], { relativeTo: this.route })
     this.productoService.borrarProducto(this.idEdit)

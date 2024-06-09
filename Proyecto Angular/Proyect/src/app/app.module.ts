@@ -18,6 +18,12 @@ import { FooterComponent } from './core/footer/footer.component';
 import { HeaderComponent } from './core/header/header.component';
 import { MainComponent } from './core/main/main.component';
 import { ProductoDetailComponent } from './categoria/producto/producto-detail/producto-detail.component';
+import { AboutUsComponent } from './informacion/about-us/about-us.component';
+import { CookiesComponent } from './informacion/cookies/cookies.component';
+import { ContactComponent } from './informacion/contact/contact.component';
+import { LegalComponent } from './informacion/legal/legal.component';
+import { PrivacyComponent } from './informacion/privacy/privacy.component';
+import { CarritoComponent } from './carrito/carrito.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +37,12 @@ import { ProductoDetailComponent } from './categoria/producto/producto-detail/pr
     LoginComponent,
     ProductoEditComponent,
     ProductoDetailComponent,
+    AboutUsComponent,
+    CookiesComponent,
+    ContactComponent,
+    LegalComponent,
+    PrivacyComponent,
+    CarritoComponent,
   ],
   imports: [
     BrowserModule,
