@@ -15,7 +15,7 @@
                     <a id="about" routerLink="/aboutUs">Sobre Nosotros</a>
                 </div>
                 <div class="col-1">
-                    <a id="contact" routerLink="/contact">Contactanos</a>
+                    <a id="contact" routerLink="/contactUs">Contactanos</a>
                 </div>
                 <div class="col-4">
                     <ng-template [ngIf]="!usuarioService.usuarioLogeado">
@@ -38,8 +38,6 @@
                                         class="btn btn-secondary"></a>
                             </div>
                         </div>
-
-
                     </ng-template>
                     <input type="button" id="logIn" value="Log Out" class="btn btn-secondary" (click)="onLogOut()"
                         *ngIf="usuarioService.usuarioLogeado">
@@ -67,7 +65,9 @@
             </div>
             <div class="col-lg-4">
                 <div id="compraNavegacion">
-                    <img src="../../assets/images/carrito.png" id="iconoNavegacion">
+                    <a routerLink="/carrito">
+                        <img src="../../assets/images/carrito.png" id="iconoNavegacion">
+                    </a>
                     <input type="search" placeholder="Buscar..." id="buscadorNavegacion">
                 </div>
             </div>

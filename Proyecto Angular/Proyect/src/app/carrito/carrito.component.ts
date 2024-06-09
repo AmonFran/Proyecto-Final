@@ -17,7 +17,7 @@ import { ImagenesService } from '../categoria/producto/producto-imagenes/imagene
 export class CarritoComponent implements OnInit {
   usuario: Usuario | undefined;
   pedido: Pedido | boolean | undefined;
-  detallesPedido: DetallePedido[];
+  detallesPedido: DetallePedido[] = [];
 
   constructor(private usuarioService: UsuarioService, private pedidoService: PedidoService, private detallePedidoService: DetallePedidoService, private router: Router, private route: ActivatedRoute, public productoService: ProductoService, public imagenesService: ImagenesService) { }
 
@@ -39,6 +39,6 @@ export class CarritoComponent implements OnInit {
   }
   eliminar(detallePedido: DetallePedido) {
     this.pedidoService.eliminarDetalles(detallePedido.id);
-    
+
   }
 }

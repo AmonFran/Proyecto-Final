@@ -11,6 +11,7 @@ import { ContactComponent } from './informacion/contact/contact.component';
 import { PrivacyComponent } from './informacion/privacy/privacy.component';
 import { CookiesComponent } from './informacion/cookies/cookies.component';
 import { LegalComponent } from './informacion/legal/legal.component';
+import { CarritoComponent } from './carrito/carrito.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,9 @@ const routes: Routes = [
   },
   {
     path: 'producto/:id', component: ProductoDetailComponent
+  },
+  {
+    path: 'carrito', component: CarritoComponent
   },
   {
     path: 'registro', component: RegistroComponent

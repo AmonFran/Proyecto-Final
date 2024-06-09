@@ -1,0 +1,26 @@
+table {
+    width: 100%;
+}
+
+tr {
+    border-bottom: 1px solid;
+}
+img{
+    width: 80%;
+}
+
+.primera {
+    width: 20%;
+}
+
+.segunda {
+    width: 30%;
+}
+
+.tercera {
+    width: 20%;
+}
+
+.cuarta {
+    width: 10%;
+}
