@@ -40,6 +40,26 @@ class QueryModel extends CI_Model
         $sql = "Select * From Imagen";
         return ($this->ExecuteArrayResults($sql));
     }
+    public function ListarPedidos()
+    {
+        $sql = "Select * From Pedido";
+        return ($this->ExecuteArrayResults($sql));
+    }
+    public function ListarDetallePedido()
+    {
+        $sql = "Select * From DetallePedido";
+        return ($this->ExecuteArrayResults($sql));
+    }
+    public function ListarImagenesQueEliminar($idesImagenes, $idProducto)
+    {
+        $sql = "Select * From Imagen where idProducto=" . $idProducto;
+
+        foreach ($idesImagenes as $idImagen) {
+            print_r($idImagen);
+            $sql .= " and Id!='". (int)$idImagen ."'";
+        }
+        return ($this->ExecuteArrayResults($sql));
+    }
 
     public function insert($tabla, $datos)
     {

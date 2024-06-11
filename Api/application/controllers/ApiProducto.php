@@ -26,12 +26,16 @@ class ApiProducto extends REST_Controller
         $producto = $this->QueryModel->ListarProductos();
         $categoria = $this->QueryModel->ListarCategoria();
         $usuario = $this->QueryModel->ListarUsuarios();
-        $imagenes = $this->QueryModel->ListarIMagenes();
+        $imagenes = $this->QueryModel->ListarImagenes();
+        $pedido = $this->QueryModel->ListarPedidos();
+        $detallePedido = $this->QueryModel->ListarDetallePedido();
         $datos = array(
             'producto' => $producto,
             'categoria' => $categoria,
             'usuarios' => $usuario,
             'imagenes' => $imagenes,
+            'pedidos' => $pedido,
+            'detallesPedidos' => $detallePedido,
         );
         $output['data'] = [
             'datos' => $datos

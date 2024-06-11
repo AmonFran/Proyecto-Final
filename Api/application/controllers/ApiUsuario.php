@@ -23,22 +23,22 @@ class ApiUsuario extends REST_Controller
     {
         // Obtener parametro mediante get
         $data = json_decode(file_get_contents('php://input'));
-        $this->QueryModel->insert("usuario", $data);
-        $this->set_response(['status' => true, 'message' => 'Usuario añadida correctamente'], REST_Controller::HTTP_CREATED);
+        $this->QueryModel->insert("usuario", $data->body->usuario);
+        $this->set_response(['status' => true, 'message' => 'Usuario añadido correctamente'], REST_Controller::HTTP_CREATED);
     }
 
     public function usuario_put()
     {
         $data = json_decode(file_get_contents('php://input'), true);
-        $where['Id'] = $data['Id'];
+        $where['id'] = $data['id'];
         $this->QueryModel->update("usuario", $data, $where);
-        $this->set_response(['status' => true, 'message' => 'Usuario actualizada correctamente'], REST_Controller::HTTP_OK);
+        $this->set_response(['status' => true, 'message' => 'Usuario actualizado correctamente'], REST_Controller::HTTP_OK);
     }
     public function usuario_delete()
     {
         $data = json_decode(file_get_contents('php://input'));
-        $where['Id'] = $data;
+        $where['id'] = $data;
         $this->QueryModel->delete("usuario", $where);
-        $this->set_response(['status' => true, 'message' => 'Usuario borrada correctamente'], REST_Controller::HTTP_NO_CONTENT);
+        $this->set_response(['status' => true, 'message' => 'Usuario borrado correctamente'], REST_Controller::HTTP_NO_CONTENT);
     }
 }
