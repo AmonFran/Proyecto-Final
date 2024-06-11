@@ -1,0 +1,12 @@
+img {
+    width: 100px;
+    height: 100px;
+}
+
+.borde-rojo {
+    border-bottom: 3px solid #E93232;
+}
+
+.borde-morado {
+    border: 1px solid #907DB3;
+}

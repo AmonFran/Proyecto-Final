@@ -24,11 +24,11 @@
     <div class="col-8">
         <h2>{{producto.nombre}}</h2>
         <p>Descripcion: {{producto.descripcion}}</p>
+        <span>Caracteristicas:</span>
         <ul>
-            <p>Caracteristicas:</p>
             <li *ngFor="let caracteristica of caracteristicas">{{caracteristica}}</li>
         </ul>
         <h3>Precio: {{producto.precio}}€</h3>
-        <button class="btn" id="anadirCarrito">Añadir al carrito</button>
+        <button class="btn" id="anadirCarrito" (click)="anhadir()">Añadir al carrito</button>
     </div>
 </div>

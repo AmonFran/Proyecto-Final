@@ -1,0 +1,19 @@
+<main>
+    <div class="row borde-rojo" *ngFor="let pedido of pedidos;">
+        <div class="col">
+            <h2>Pedido con fecha {{pedido.fecha | date :'dd/MM/yyyy'}}</h2>
+            <h4>Estado: {{pedido.estado| lowercase}}</h4>
+            <div class="row m-3 borde-morado" *ngFor="let detalle of getDetalles(pedido.id)">
+                <div class="col">
+                    <img src="{{imagenesService.getImagenesProducto(detalle.idProducto)[0].imagenPath}}"
+                        alt="{{imagenesService.getImagenesProducto(detalle.idProducto)[0].nombre}}"
+                        title="{{imagenesService.getImagenesProducto(detalle.idProducto)[0].nombre}}">
+                </div>
+                <div class="col">
+                    <h4>{{productoService.getProducto(detalle.idProducto).nombre}}</h4>
+                    {{productoService.getProducto(detalle.idProducto).descripcion}}
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

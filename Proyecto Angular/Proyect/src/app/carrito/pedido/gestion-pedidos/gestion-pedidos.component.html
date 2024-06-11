@@ -1,0 +1,19 @@
+<main>
+    <div class="row borde-rojo" *ngFor="let pedido of pedidos;">
+
+        <div class="col">
+            <h2>Pedido con fecha {{pedido.fecha | date :'dd/MM/yyyy'}} de
+                {{usuarioService.getUsuario(pedido.idUsuario)?.alias}}</h2>
+            <select name="rol" id="rol" (change)="cambiarEstado(pedido.id, $event)">
+                <option value="EN ESPERA" [selected]="pedido.estado=='EN ESPERA' ? true:false">EN ESPERA</option>
+                <option value="COSIENDOSE" [selected]="pedido.estado=='COSIENDOSE' ? true:false">COSIENDOSE</option>
+                <option value="ENVIADO" [selected]="pedido.estado=='ENVIADO' ? true:false">ENVIADO</option>
+            </select>
+            <div class="row m-3 borde-morado" *ngFor="let detalle of getDetalles(pedido.id)">
+                <div class="col">
+                    <h4>{{productoService.getProducto(detalle.idProducto).nombre}}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

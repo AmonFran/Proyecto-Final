@@ -31,12 +31,18 @@ export class CategoriaComponent implements OnInit {
     });
     this.subscriptionProductos = this.productoService.productosChanged.subscribe(
       (productos: Producto[]) => {
-        this.productos = productos;
+        if (this.id) {
+          this.productos = [];
+          for (let producto of productos) {
+            if (producto.idCategoria == this.id) {
+              this.productos.push(producto);
+            }
+          }
+        }
       }
-    )
-    this.initForm()
-    console.log(this.usuarioService.getRolLogeado());
-    
+    );
+    // this.productos = this.productoService.getProductosCategoria(this.id);
+    this.initForm();
   }
 
   initForm() {
@@ -103,6 +109,7 @@ export class CategoriaComponent implements OnInit {
     this.initForm();
     this.onChange()
   }
+
   filtrar() {
     this.productos = this.productoService.getProductosCategoriaYCaracteristicas(this.id, this.filtros)
   }
@@ -110,13 +117,13 @@ export class CategoriaComponent implements OnInit {
   getPrimeraImagenProducto(idProducto: number) {
     return this.imagenesService.getImagenesProducto(idProducto)[0];
   }
+
   enModificar(index: number) {
     if (this.usuarioService.usuarioLogeado && this.usuarioService.getRolLogeado() != "USER") {
       this.router.navigate(['../edit/' + index], { relativeTo: this.route });
     }
-    else{
+    else {
       this.router.navigate(['../../producto/' + index], { relativeTo: this.route });
-
     }
   }
 }

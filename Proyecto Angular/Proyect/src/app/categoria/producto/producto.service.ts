@@ -15,6 +15,7 @@ export class ProductoService {
 
     cargarProductos(productos: Producto[]) {
         this.productos = productos;
+        this.productosChanged.next(this.productos.slice())
     }
 
     getProductos() {
@@ -35,13 +36,6 @@ export class ProductoService {
 
     getProductosCategoria(idCategoria: number) {
         let productosCategoria: Producto[] = [];
-        this.productos.forEach(
-            (producto) => {
-                if (idCategoria == producto.idCategoria) {
-
-                }
-            }
-        )
         for (let producto of this.productos) {
             if (producto.idCategoria == idCategoria) {
                 productosCategoria.push(producto);
@@ -64,10 +58,21 @@ export class ProductoService {
         return productosFiltrados
     }
 
+    getProductosBusqueda(busqueda: string) {
+        let productosFiltrados: Producto[] = [];
+        for (let producto of this.productos) {
+            if (producto.nombre.toLowerCase().indexOf(busqueda) > -1 || producto.caracteristicas.toLowerCase().indexOf(busqueda) > -1) {
+                productosFiltrados.push(producto);
+            }
+        }
+        return productosFiltrados;
+    }
+
     agregarProducto(nuevoProducto: Producto) {
         this.productos.push(nuevoProducto);
         this.productosChanged.next(this.productos.slice())
     }
+
     actualizarProducto(idEdit: number, editProducto: Producto) {
         for (let i = 0; i < this.productos.length; i++) {
             if (this.productos[i].id == idEdit) {
@@ -77,6 +82,7 @@ export class ProductoService {
         }
         this.productosChanged.next(this.productos.slice())
     }
+
     borrarProducto(idProducto: number) {
         for (let i = 0; i < this.productos.length; i++) {
             if (this.productos[i].id == idProducto) {

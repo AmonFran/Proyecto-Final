@@ -1,3 +1,21 @@
 footer {
     overflow: hidden;
+    background-color: #907DB3;
+}
+#nombreEmpresa span {
+    color: white;
+    float: right;
+    padding-right: 1em;
+}
+
+#divIconos {
+    text-align: center;
+    color: white
+}
+
+img.iconos {
+    margin-left: 1em;
+    margin-right: 1em;
+    width: 20px;
+    height: 20px;
 }

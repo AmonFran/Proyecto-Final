@@ -1,3 +1,12 @@
-body{
+body {
     overflow: hidden;
+}
+
+#divImagenesCategorias {
+    text-align: center;
+}
+
+.imagenesCategorias:first-child {
+    width: 200px;
+    height: 200px;
 }

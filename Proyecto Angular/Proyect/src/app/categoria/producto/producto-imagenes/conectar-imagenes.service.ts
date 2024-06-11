@@ -14,7 +14,6 @@ export class ImagenesStorageService {
     }
 
     guardarImagenes(nuevasImagenes: Imagen[]) {
-        console.log(nuevasImagenes);
         return this.http.post(`${environment.apiUrl}imagen-post`, nuevasImagenes).subscribe(
             (response: any) => {
                 console.log(response);
@@ -23,7 +22,6 @@ export class ImagenesStorageService {
     }
 
     actualizarImagenes(nuevasImagenes: Imagen[], idProducto: number) {
-        console.log(nuevasImagenes);
         return this.http.put(`${environment.apiUrl}imagen-put`, { nuevasImagenes, idProducto }).subscribe(
             (response: any) => {
                 console.log(response);

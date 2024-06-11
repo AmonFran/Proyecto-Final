@@ -2,9 +2,99 @@
     color: white;
     background-color: #907DB3;
     text-align: center;
-    border: 1px solid white;
     padding: 20px;
 }
-header{
+
+header {
     overflow: hidden;
+}
+
+ul {
+    color: white;
+    background-color: #907DB3;
+    text-align: center;
+    padding: 15px;
+}
+
+li {
+    padding: 5px;
+}
+
+.opciones li:hover {
+    background-color: #E93232;
+}
+
+#about,
+#contact {
+    text-align: center;
+    text-decoration: underline;
+    font-size: 18px;
+    margin-top: 1em;
+}
+
+header>div {
+    border: 1px black solid;
+    background-color: #13051e;
+    text-align: right;
+    overflow: hidden;
+}
+
+img#logoHeader {
+    width: 120px;
+    height: 70px;
+
+    float: left;
+}
+
+.divFlotarDerecha {
+    float: right;
+}
+
+#logIn {
+    background-color: #E93232;
+    color: white;
+    font-size: 150%;
+    border: black solid 1px;
+}
+
+#registrarse,
+#perfil {
+    background-color: #907DB3;
+    color: white;
+    font-size: 150%;
+    border: black solid 1px;
+}
+
+#navegacion {
+    background-color: #907DB3;
+    border: solid, black, 1px;
+}
+
+#navegacion>div {
+    text-align: center;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border: #13051e solid 1px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+img#iconoNavegacion {
+    width: 40px;
+    height: 40px;
+}
+
+span.enlacesNavegacion {
+    font-size: 2em;
+}
+
+input#buscadorNavegacion {
+    width: 15em;
+    padding-right: 1em;
+}
+.titulo{
+    color: #E93232;
+    cursor: pointer;
+    margin: 10px;
+    float: left;
 }

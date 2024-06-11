@@ -1,0 +1,29 @@
+<main>
+    <form [formGroup]="editForm" class="form m-3">
+        <div class="form-group row m-1">
+            <div class="form-item col">
+                <label for="email">Correo electronico</label>
+                <input type="text" class="form-control" id="email" formControlName="email">
+            </div>
+            <div class="form-item col">
+                <label for="password">Contraseña</label>
+                <input type="password" class="form-control" id="password" formControlName="password">
+            </div>
+        </div>
+        <div class="form-group row m-1">
+            <div class="col-4">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" id="nombre" formControlName="nombre">
+            </div>
+            <div class="col-4">
+                <label for="apellido">Apellido</label>
+                <input type="text" class="form-control" id="apellido" formControlName="apellido">
+            </div>
+            <div class="col-4">
+                <label for="direccion">Direccion</label>
+                <input type="text" class="form-control" id="direccion" formControlName="direccion">
+            </div>
+        </div>
+        <button class="btn btn-success" (click)="onSubmit()">Confirmar cambios datos</button>
+    </form>
+</main>

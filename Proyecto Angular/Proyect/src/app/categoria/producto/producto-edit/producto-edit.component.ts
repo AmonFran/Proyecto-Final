@@ -66,11 +66,11 @@ export class ProductoEditComponent implements OnInit {
         const imagenes = this.imagenesService.getImagenesProducto((productoId));
         for (let imagen of imagenes) {
           let archivo: File;
-          imagen.imagenPath.split("/")[-1];
+          // imagen.imagenPath.split("/")[-1];
           productoImagenes.push(
             new FormGroup({
               'idImagen': new FormControl(imagen.id),
-              'idImagenVino': new FormControl(imagen.idProducto),
+              'idImagenProducto': new FormControl(imagen.idProducto),
               'imgName': new FormControl(imagen.nombre, Validators.required),
               'imgPath': new FormControl(imagen.imagenPath),
               'imagen': new FormControl({ value: null, disabled: true }),
@@ -121,8 +121,6 @@ export class ProductoEditComponent implements OnInit {
           this.productoForm.value['imagenes'][i].imgPath
         ));
       } else {
-        console.log(this.categoriaService.getCategoria(nuevoProducto.idCategoria).nombre.toLowerCase());
-
         nuevasImagenes.push(new Imagen(
           this.productoForm.value['imagenes'][i].idImagen,
           this.productoForm.value['imagenes'][i].idImagenProducto,
@@ -196,7 +194,6 @@ export class ProductoEditComponent implements OnInit {
         this.cd.markForCheck();
       }
     }
-    console.log(this.archivos);
   }
 
   enEliminar() {

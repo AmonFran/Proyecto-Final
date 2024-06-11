@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, NgModel } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UsuarioService } from 'src/app/auth/usuario.service';
 
 @Component({
@@ -8,10 +9,11 @@ import { UsuarioService } from 'src/app/auth/usuario.service';
   styleUrls: ['./header.component.css', '../../app.component.css']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor(public usuarioService: UsuarioService) { }
+  buscador: NgModel | undefined;
+  constructor(private route: ActivatedRoute, private router: Router, public usuarioService: UsuarioService) { }
 
   ngOnInit(): void {
+
   }
 
   onLogin(form: NgForm) {
@@ -19,7 +21,32 @@ export class HeaderComponent implements OnInit {
     const contrasenha = form.value.contrasenha;
     this.usuarioService.iniciarSesion(alias, contrasenha);
   }
+
   onLogOut() {
     this.usuarioService.logOut();
+  }
+
+  editarPerfil() {
+    this.router.navigate(['editarPerfil/' + this.usuarioService.usuarioLogeado.id], { relativeTo: this.route.root });
+  }
+
+  verPedidos() {
+    this.router.navigate(['pedidos'], { relativeTo: this.route.root });
+  }
+
+  gestionarPedidos() {
+    this.router.navigate(['gestionPedidos'], { relativeTo: this.route.root });
+  }
+
+  gestionarUsuarios() {
+    this.router.navigate(['adminUsers'], { relativeTo: this.route.root });
+  }
+
+  buscar(event: any) {
+    if (event.buscador == '') {
+      this.router.navigate([''], { relativeTo: this.route.root });
+    } else {
+      this.router.navigate(['productos/' + event.buscador]);
+    }
   }
 }

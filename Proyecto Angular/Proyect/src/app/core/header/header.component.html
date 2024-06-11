@@ -1,21 +1,25 @@
 <header th:fragment="navegacion">
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-6">
             <a routerLink="">
-                <img src="../../assets/images/logoEstatico.png" alt="Logo de Sedutriv S.L."
-                    title="Logo de Sedutriv S.L." id="logoHeader" />
+                <img src="../../assets/images/logoPrueba.png" alt="Logo de Sedutriv S.L." title="Logo de Sedutriv S.L."
+                    id="logoHeader" class="align-middle" />
             </a>
+            <h1 class="titulo" routerLink="">SEDUTRIV</h1>
         </div>
-        <div class="col-sm-6 DivFlotarDerecha">
-            <div class="row">
-                <div class="col-5">
+        <!-- <div class="col-2">
+            
+        </div> -->
+        <div class="col-6 DivFlotarDerecha">
+            <div class="row m-2">
+                <div class="col-4">
 
                 </div>
                 <div class="col-2">
                     <a id="about" routerLink="/aboutUs">Sobre Nosotros</a>
                 </div>
-                <div class="col-1">
-                    <a id="contact" routerLink="/contactUs">Contactanos</a>
+                <div class="col-2">
+                    <a id="contact" routerLink="/contact">Contactanos</a>
                 </div>
                 <div class="col-4">
                     <ng-template [ngIf]="!usuarioService.usuarioLogeado">
@@ -39,36 +43,61 @@
                             </div>
                         </div>
                     </ng-template>
-                    <input type="button" id="logIn" value="Log Out" class="btn btn-secondary" (click)="onLogOut()"
-                        *ngIf="usuarioService.usuarioLogeado">
+                    <ng-template [ngIf]="usuarioService.usuarioLogeado">
+                        <div class="row">
+                            <div class="col">
+                                <input type="button" id="logIn" value="Log Out" class="btn btn-secondary"
+                                    (click)="onLogOut()" *ngIf="usuarioService.usuarioLogeado">
+                            </div>
+                            <div class="col">
+                                <input type="button" id="perfil" value="Perfil"
+                                    class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                <ul class="dropdown-menu opciones">
+                                    <li style="cursor: pointer;" (click)="editarPerfil()">
+                                        <a>Editar Perfil</a>
+                                    </li>
+                                    <li *ngIf="usuarioService.usuarioLogeado.rol=='USER'" style="cursor: pointer;"
+                                        (click)="verPedidos()">
+                                        <a>Historial de pedidos</a>
+                                    </li>
+                                    <li *ngIf="usuarioService.usuarioLogeado.rol=='MANAGER'" style="cursor: pointer;"
+                                        (click)="gestionarPedidos()">
+                                        <a>Gestionar pedidos</a>
+                                    </li>
+                                    <li *ngIf="usuarioService.usuarioLogeado.rol=='ADMIN'" style="cursor: pointer;"
+                                        (click)="gestionarUsuarios()">
+                                        <a>Administrar usuarios</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </ng-template>
                 </div>
-
-
-
             </div>
-
         </div>
     </div>
     <nav>
         <div class="row" id="navegacion">
-            <div class="col-lg-2">
-                <a routerLink="/categoria/1" class="enlacesNavegacion">Mochilas</a>
+            <div class="col-lg-2" routerLink="/categoria/1">
+                <span class="enlacesNavegacion">Mochilas</span>
             </div>
-            <div class="col-lg-2">
-                <a routerLink="/categoria/2" class="enlacesNavegacion">Bolsos</a>
+            <div class="col-lg-2" routerLink="/categoria/2">
+                <span class="enlacesNavegacion">Bolsos</span>
             </div>
-            <div class="col-lg-2">
-                <a routerLink="/categoria/3" class="enlacesNavegacion">Bandoleras</a>
+            <div class="col-lg-2" routerLink="/categoria/3">
+                <span class="enlacesNavegacion">Bandoleras</span>
             </div>
-            <div class="col-lg-2">
-                <a routerLink="/categoria/4" class="enlacesNavegacion">Cortinas</a>
+            <div class="col-lg-2" routerLink="/categoria/4">
+                <span class="enlacesNavegacion">Cortinas</span>
             </div>
             <div class="col-lg-4">
                 <div id="compraNavegacion">
                     <a routerLink="/carrito">
                         <img src="../../assets/images/carrito.png" id="iconoNavegacion">
                     </a>
-                    <input type="search" placeholder="Buscar..." id="buscadorNavegacion">
+                    <input type="search" placeholder="Buscar..." id="buscadorNavegacion" [(ngModel)]="buscador"
+                        (input)="buscar(this)">
                 </div>
             </div>
         </div>

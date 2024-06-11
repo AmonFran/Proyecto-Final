@@ -21,6 +21,7 @@ export class ConectarProductoService {
       }
     );
   }
+  
   actualizarProducto(nuevoProducto: Producto) {
     return this.http.put(`${environment.apiUrl}producto-put`, nuevoProducto).subscribe(
       (response: any) => {

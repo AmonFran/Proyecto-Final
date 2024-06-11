@@ -34,17 +34,6 @@ export class ImagenesService {
         editImagenes.forEach((imagen: Imagen) => {
             this.imagenes.push(imagen);
         });
-        // for (let i = 0; i < editImagenes.length; i++) {
-        //     let esta = false;
-        //     for (let j = 0; j < this.imagenes.length; j++) {
-        //         if (this.imagenes[j].Id == editImagenes[i].Id) {
-        //             esta = true;
-        //         }
-        //     }
-        //     if (!esta) {
-        //         this.imagenes.push(editImagenes[i]);
-        //     }
-        // }
         this.imagenesChanged.next(this.imagenes.slice());
     }
 

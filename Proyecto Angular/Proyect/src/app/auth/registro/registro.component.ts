@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Usuario } from '../usuario.model';
 import { UsuarioService } from '../usuario.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ConectarUsuarioService } from '../conectar-usuario.service';
 
 @Component({
   selector: 'app-registro',
@@ -11,7 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class RegistroComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private router: Router, private usuarioService: UsuarioService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private usuarioService: UsuarioService, private conectarUsuarioService: ConectarUsuarioService) { }
 
   ngOnInit(): void {
   }
@@ -20,6 +21,7 @@ export class RegistroComponent implements OnInit {
     let valores = form.value;
     let user = new Usuario(this.usuarioService.getUsuarios().length + 1, valores.email, valores.alias, valores.contrasenha, valores.nombre, valores.apellido, valores.direccion)
     this.usuarioService.anhadirUsuario(user);
+    this.conectarUsuarioService.guardarUsuario(user);
     this.usuarioService.iniciarSesion(user.alias, user.contrasenha)
     this.router.navigate(['..'], { relativeTo: this.route })
   }

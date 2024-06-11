@@ -2,12 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Usuario } from '../auth/usuario.model';
 import { UsuarioService } from '../auth/usuario.service';
-import { DetallePedido } from './detalle-pedido';
-import { DetallePedidoService } from './detalle-pedido.service';
-import { Pedido } from './pedido.model';
-import { PedidoService } from './pedido.service';
 import { ProductoService } from '../categoria/producto/producto.service';
 import { ImagenesService } from '../categoria/producto/producto-imagenes/imagenes.service';
+import { DetallePedido } from './detalle-pedido/detalle-pedido';
+import { DetallePedidoService } from './detalle-pedido/detalle-pedido.service';
+import { Pedido } from './pedido/pedido.model';
+import { PedidoService } from './pedido/pedido.service';
+import { ConectarDetallePedidoService } from './detalle-pedido/conectar-detalle-pedido.service';
+import { ConectarPedidoService } from './pedido/conectar-pedido.service';
+import { Subscription } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-carrito',
@@ -16,10 +20,11 @@ import { ImagenesService } from '../categoria/producto/producto-imagenes/imagene
 })
 export class CarritoComponent implements OnInit {
   usuario: Usuario | undefined;
-  pedido: Pedido | boolean | undefined;
+  pedido: Pedido | false | undefined;
   detallesPedido: DetallePedido[] = [];
+  subscriptionDetalles: Subscription | undefined;
 
-  constructor(private usuarioService: UsuarioService, private pedidoService: PedidoService, private detallePedidoService: DetallePedidoService, private router: Router, private route: ActivatedRoute, public productoService: ProductoService, public imagenesService: ImagenesService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private toastrService: ToastrService, private usuarioService: UsuarioService, private pedidoService: PedidoService, private detallePedidoService: DetallePedidoService, public productoService: ProductoService, public imagenesService: ImagenesService, private conectarPedidoService: ConectarPedidoService, private conectarDetallePedido: ConectarDetallePedidoService) { }
 
   ngOnInit(): void {
     this.usuario = this.usuarioService.usuarioLogeado;
@@ -28,6 +33,17 @@ export class CarritoComponent implements OnInit {
     }
     this.pedido = this.pedidoService.buscarPedido(this.usuario.id);
     if (this.pedido) {
+      const pedidoId = this.pedido.id;
+      this.subscriptionDetalles = this.detallePedidoService.detallesChanged.subscribe(
+        (detalles: DetallePedido[]) => {
+          this.detallesPedido = [];
+          for (let detalle of detalles) {
+            if (detalle.idPedido == pedidoId) {
+              this.detallesPedido.push(detalle);
+            }
+          }
+        }
+      )
       this.detallesPedido = this.detallePedidoService.getDetallesPedido(this.pedido.id);
     } else {
       this.volver();
@@ -37,8 +53,25 @@ export class CarritoComponent implements OnInit {
   volver() {
     this.router.navigate(['..'], { relativeTo: this.route });
   }
-  eliminar(detallePedido: DetallePedido) {
-    this.pedidoService.eliminarDetalles(detallePedido.id);
 
+  eliminar(detallePedido: DetallePedido) {
+    const pedidoViejo = this.pedidoService.eliminarDetalles(detallePedido.id);
+    this.conectarDetallePedido.borrarDetallePedido(detallePedido.id);
+    if (pedidoViejo) {
+      this.conectarPedidoService.borrarPedido(pedidoViejo[0].id);
+    }
+  }
+
+  finalizarPedido() {
+    if (this.pedido) {
+      let finalPedido = this.pedido;
+      finalPedido.enProceso = false;
+      finalPedido.fecha = new Date();
+      finalPedido.estado = 'EN ESPERA'
+      this.pedidoService.actualizarPedido(finalPedido.id);
+      this.conectarPedidoService.actualizarPedido(finalPedido);
+      this.toastrService.success("Pedido recibido");
+      this.router.navigate([''], { relativeTo: this.route.root });
+    }
   }
 }
