@@ -1,11 +1,13 @@
 <main>
     <form class="mt-4 form" id="formulario" (ngSubmit)="onRegistro(f)" #f="ngForm">
-        <div class="form-group">
+        <div class="form-group my-3">
             <label>
                 Correo electronico:
                 <br />
                 <input type="text" placeholder="example@example.com" id="email" name="email" required ngModel>
             </label>
+        </div>
+        <div class="form-group my-3">
             <label>
                 Usuario:
                 <br />
@@ -17,8 +19,7 @@
                 <input type="password" placeholder="******" id="contrasenha" name="contrasenha" required ngModel>
             </label>
         </div>
-
-        <div class="form-group">
+        <div class="form-group my-3">
             <label>
                 Nombre:
                 <br />
@@ -29,12 +30,15 @@
                 <br />
                 <input type="text" placeholder="Gonzales" id="apellido" name="apellido" required ngModel>
             </label>
+        </div>
+        <div class="form-group my-3">
             <label>
                 Direccion:
                 <br />
-                <input type="text" placeholder="Calle de los robles nº4" id="direccion" name="direccion" required ngModel>
+                <input type="text" placeholder="Calle de los robles nº4" id="direccion" name="direccion" required
+                    ngModel>
             </label>
         </div>
-        <button value="Submit">Submit</button>
+        <button value="Submit" [disabled]="!f.valid">Submit</button>
     </form>
 </main>

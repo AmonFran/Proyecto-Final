@@ -1,5 +1,5 @@
 <main>
-    <div class="row borde-rojo" *ngFor="let pedido of pedidos;">
+    <div class="row borde-rojo m-3" *ngFor="let pedido of pedidos;">
         <div class="col">
             <h2>Pedido con fecha {{pedido.fecha | date :'dd/MM/yyyy'}} de
                 {{usuarioService.getUsuario(pedido.idUsuario)?.alias}}</h2>
