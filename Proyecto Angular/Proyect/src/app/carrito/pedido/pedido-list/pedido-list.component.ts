@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { PedidoService } from '../pedido.service';
-import { DetallePedidoService } from '../../detalle-pedido/detalle-pedido.service';
-import { Pedido } from '../pedido.model';
-import { UsuarioService } from 'src/app/auth/usuario.service';
-import { ImagenesService } from 'src/app/categoria/producto/producto-imagenes/imagenes.service';
-import { ProductoService } from 'src/app/categoria/producto/producto.service';
+import { PedidoService } from '../../../_services/pedido.service';
+
+import { Pedido } from '../../../_models/pedido.model';
+import { UsuarioService } from 'src/app/_services/usuario.service';
+import { ImagenesService } from 'src/app/_services/imagenes.service';
+import { ProductoService } from 'src/app/_services/producto.service';
 import { Subscription } from 'rxjs';
+import { DetallePedidoService } from 'src/app/_services/detalle-pedido.service';
 
 
 @Component({
@@ -32,6 +33,8 @@ export class PedidoListComponent implements OnInit {
         this.pedidos.reverse();
       }
     )
+    this.pedidos = this.pedidoService.obtenerPedidosRealizados(this.usuarioService.usuarioLogeado.id);
+    this.pedidos.reverse();
   }
 
   getDetalles(idPedido: number) {

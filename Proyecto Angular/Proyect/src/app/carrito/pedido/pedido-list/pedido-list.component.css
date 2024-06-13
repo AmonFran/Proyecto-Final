@@ -1,6 +1,5 @@
 img {
-    width: 100px;
-    height: 100px;
+    width: 100%;
 }
 
 .borde-rojo {
@@ -9,4 +8,8 @@ img {
 
 .borde-morado {
     border: 1px solid #907DB3;
+}
+
+main {
+    overflow: hidden;
 }

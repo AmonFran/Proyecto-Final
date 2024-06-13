@@ -1,17 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Usuario } from '../auth/usuario.model';
-import { UsuarioService } from '../auth/usuario.service';
-import { ProductoService } from '../categoria/producto/producto.service';
-import { ImagenesService } from '../categoria/producto/producto-imagenes/imagenes.service';
-import { DetallePedido } from './detalle-pedido/detalle-pedido';
-import { DetallePedidoService } from './detalle-pedido/detalle-pedido.service';
-import { Pedido } from './pedido/pedido.model';
-import { PedidoService } from './pedido/pedido.service';
-import { ConectarDetallePedidoService } from './detalle-pedido/conectar-detalle-pedido.service';
-import { ConectarPedidoService } from './pedido/conectar-pedido.service';
-import { Subscription } from 'rxjs';
+import { Usuario } from '../_models/usuario.model';
+import { UsuarioService } from '../_services/usuario.service';
+import { ImagenesService } from '../_services/imagenes.service';
+import { ProductoService } from '../_services/producto.service';
+
+import { Pedido } from '../_models/pedido.model';
+import { PedidoService } from '../_services/pedido.service';
+
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
+import { ConectarDetallePedidoService } from '../_services/conexion-api/conectar-detalle-pedido.service';
+import { DetallePedido } from '../_models/detalle-pedido';
+import { DetallePedidoService } from '../_services/detalle-pedido.service';
+import { ConectarPedidoService } from '../_services/conexion-api/conectar-pedido.service';
 
 @Component({
   selector: 'app-carrito',
@@ -28,9 +30,9 @@ export class CarritoComponent implements OnInit {
 
   ngOnInit(): void {
     this.usuario = this.usuarioService.usuarioLogeado;
-    if (!this.usuario) {
-      this.volver();
-    }
+    // if (!this.usuario) {
+    //   this.volver();
+    // }
     this.pedido = this.pedidoService.buscarPedido(this.usuario.id);
     if (this.pedido) {
       const pedidoId = this.pedido.id;

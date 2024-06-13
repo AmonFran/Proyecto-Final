@@ -1,4 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: 'Montserrat';
+    src: url('src/assets/fonts/Montserrat/static/Montserrat-Medium.ttf') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+}
+
+* {
+    font-family: 'Montserrat', Arial, 'Calibri', 'DM Sans';
+}
 
 body {
     background-color: #13051e;

@@ -1,14 +1,3 @@
-/* @font-face {
-    font-family: 'Montserrat';
-    src: url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap') format('truetype');
-    font-style: normal;
-    font-weight: normal;
-} */
-
-* {
-    font-family: 'Montserrat', Arial, 'Calibri', 'DM Sans';
-}
-
 main {
     background-color: #13051e;
     color: white;

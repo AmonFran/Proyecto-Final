@@ -1,12 +1,31 @@
+main {
+    overflow-y: hidden;
+}
+
 img {
     width: 500px;
     height: 500px;
     background-color: white;
 }
 
-button#anadirCarrito{
+button#anadirCarrito {
     background-color: #E93232;
 }
-button#anadirCarrito:hover{
+
+button#anadirCarrito:hover {
     background-color: #df5252;
+}
+
+.cuadroComentarios {
+    margin-top: 2em;
+    margin-bottom: 5em;
+}
+
+hr {
+    color: white;
+    border: 3px solid;
+}
+
+.borde {
+    border: 2px solid white;
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConectarAppService } from './conectar-app.service';
-import { UsuarioService } from './auth/usuario.service';
-import { Usuario } from './auth/usuario.model';
+import { UsuarioService } from './_services/usuario.service';
+import { Usuario } from './_models/usuario.model';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

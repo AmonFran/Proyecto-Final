@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Producto } from './producto.model';
-import { ProductoService } from './producto.service';
-import { ImagenesService } from './producto-imagenes/imagenes.service';
-import { UsuarioService } from 'src/app/auth/usuario.service';
+import { Producto } from '../../_models/producto.model';
+import { ProductoService } from '../../_services/producto.service';
+import { ImagenesService } from '../../_services/imagenes.service';
+import { UsuarioService } from 'src/app/_services/usuario.service';
 
 @Component({
   selector: 'app-producto',

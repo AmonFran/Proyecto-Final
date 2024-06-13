@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { UsuarioService } from '../usuario.service';
-import { ConectarUsuarioService } from '../conectar-usuario.service';
-import { Usuario } from '../usuario.model';
+import { UsuarioService } from '../../_services/usuario.service';
+import { ConectarUsuarioService } from '../../_services/conexion-api/conectar-usuario.service';
+import { Usuario } from '../../_models/usuario.model';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -16,12 +16,16 @@ export class EditarPerfilComponent implements OnInit {
   editForm: FormGroup;
   idEdit: number;
 
-  constructor(private route: ActivatedRoute, private router: Router, private usuarioService: UsuarioService, private conectarUsuarioService: ConectarUsuarioService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private usuarioService: UsuarioService, private conectarUsuarioService: ConectarUsuarioService, private toastrService: ToastrService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(
       (params: Params) => {
         this.idEdit = + params['id'];
+        if (this.usuarioService.usuarioLogeado && this.idEdit != this.usuarioService.usuarioLogeado.id) {
+          this.router.navigate([''], { relativeTo: this.route.root });
+          this.toastrService.error("No puedes editar un perfil que no es tuyo");
+        }
       }
     )
     this.initForm()

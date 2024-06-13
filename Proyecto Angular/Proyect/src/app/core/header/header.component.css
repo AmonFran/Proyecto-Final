@@ -57,8 +57,7 @@ img#logoHeader {
     border: black solid 1px;
 }
 
-#registrarse,
-#perfil {
+#registrarse {
     background-color: #907DB3;
     color: white;
     font-size: 150%;
@@ -79,6 +78,10 @@ img#logoHeader {
     cursor: pointer;
 }
 
+#navegacion>.navCarrito {
+    cursor: initial;
+}
+
 img#iconoNavegacion {
     width: 40px;
     height: 40px;
@@ -92,9 +95,14 @@ input#buscadorNavegacion {
     width: 15em;
     padding-right: 1em;
 }
-.titulo{
+
+.titulo {
     color: #E93232;
     cursor: pointer;
-    margin: 10px;
+    margin: 20px;
     float: left;
+    font-weight: bold;
+}
+.icoUsuario{
+    height: 50px;
 }

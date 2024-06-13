@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Usuario } from '../usuario.model';
-import { UsuarioService } from '../usuario.service';
+import { Usuario } from '../../_models/usuario.model';
+import { UsuarioService } from '../../_services/usuario.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ConectarUsuarioService } from '../conectar-usuario.service';
+import { ConectarUsuarioService } from '../../_services/conexion-api/conectar-usuario.service';
 
 @Component({
   selector: 'app-registro',

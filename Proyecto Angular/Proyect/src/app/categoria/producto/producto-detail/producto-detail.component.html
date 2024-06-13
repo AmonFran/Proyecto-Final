@@ -1,34 +1,66 @@
-<div class="row">
-    <div class="col-4">
-        <div id="carouselExampleIndicators" class="carousel carousel-dark slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active" *ngFor="let imagen of imagenes.slice(0,1)">
-                    <img src="{{imagen.imagenPath}}" class="d-block w-100" alt="{{imagen.nombre}}">
+<main>
+    <div class="row">
+        <div class="col-4">
+            <div id="carouselExampleIndicators" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active" *ngFor="let imagen of imagenes.slice(0,1)">
+                        <img src="{{imagen.imagenPath}}" class="d-block w-100" alt="{{imagen.nombre}}">
+                    </div>
+                    <div class="carousel-item" *ngFor="let imagen of imagenes.slice(1)">
+                        <img src="{{imagen.imagenPath}}" class="d-block w-100" alt="{{imagen.nombre}}">
+                    </div>
                 </div>
-                <div class="carousel-item" *ngFor="let imagen of imagenes.slice(1)">
-                    <img src="{{imagen.imagenPath}}" class="d-block w-100" alt="{{imagen.nombre}}">
-                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+        </div>
+        <div class="col-8">
+            <h2>{{producto.nombre}}</h2>
+            <p>Descripcion: {{producto.descripcion}}</p>
+            <span>Caracteristicas:</span>
+            <ul>
+                <li *ngFor="let caracteristica of caracteristicas">{{caracteristica}}</li>
+            </ul>
+            <h3>Precio: {{producto.precio}}€</h3>
+            <button class="btn" id="anadirCarrito" (click)="anhadir()">Añadir al carrito</button>
         </div>
     </div>
-    <div class="col-8">
-        <h2>{{producto.nombre}}</h2>
-        <p>Descripcion: {{producto.descripcion}}</p>
-        <span>Caracteristicas:</span>
-        <ul>
-            <li *ngFor="let caracteristica of caracteristicas">{{caracteristica}}</li>
-        </ul>
-        <h3>Precio: {{producto.precio}}€</h3>
-        <button class="btn" id="anadirCarrito" (click)="anhadir()">Añadir al carrito</button>
+    <br> <br>
+    <div class="row mx-3" *ngIf="this.usuarioService.usuarioLogeado">
+        <app-comentario [idProducto]="this.id"></app-comentario>
     </div>
-</div>
+    <br> <br>
+    <div class="row mx-5">
+        <h1>Comentarios</h1>
+        <div class="col mx-5 cuadroComentarios">
+            <div class="row">
+                <div class="col-2">
+                    <h3>Autor</h3>
+                </div>
+                <div class="col-10">
+                    <h3>Comentario</h3>
+                </div>
+            </div>
+            <div class="row bordes p-2" *ngFor="let comentario of comentarios.reverse()">
+                <div class="col-2 borde">
+                    <p>{{getUsuario(comentario.idUsuario)}}</p>
+                </div>
+                <div class="col-8 borde">
+                    <p>{{comentario.cuerpo}}</p>
+                </div>
+                <div class="col-2 borde"
+                    *ngIf="this.usuarioService.usuarioLogeado && this.usuarioService.usuarioLogeado.rol=='MANAGER'">
+                    <button type="button" (click)="eliminarComentario(comentario.id)">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

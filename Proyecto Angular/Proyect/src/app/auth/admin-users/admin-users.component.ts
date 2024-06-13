@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { UsuarioService } from '../usuario.service';
-import { Usuario } from '../usuario.model';
+import { UsuarioService } from '../../_services/usuario.service';
+import { Usuario } from '../../_models/usuario.model';
 import { NgModel } from '@angular/forms';
-import { ConectarUsuarioService } from '../conectar-usuario.service';
+import { ConectarUsuarioService } from '../../_services/conexion-api/conectar-usuario.service';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-admin-users',
@@ -12,12 +13,18 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AdminUsersComponent implements OnInit {
 
+  subscriptionUsuarios: Subscription | undefined;
   usuarios: Usuario[] = []
   rol: NgModel;
 
   constructor(private usuarioService: UsuarioService, private conectarUsuarioService: ConectarUsuarioService, private toastrService: ToastrService) { }
 
   ngOnInit(): void {
+    this.subscriptionUsuarios = this.usuarioService.usuarioChanged.subscribe(
+      (usuarios: Usuario[]) => {
+        this.usuarios = usuarios;
+      }
+    )
     this.usuarios = this.usuarioService.getUsuarios();
   }
 
@@ -48,9 +55,5 @@ export class AdminUsersComponent implements OnInit {
     else {
       this.toastrService.error("Ha habido algun error")
     }
-  }
-
-  mostrarEvento(event: any) {
-    console.log(event);
   }
 }

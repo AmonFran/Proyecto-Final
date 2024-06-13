@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { DetallePedido } from './detalle-pedido';
+
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
+import { DetallePedido } from 'src/app/_models/detalle-pedido';
 
 @Injectable({
   providedIn: 'root'

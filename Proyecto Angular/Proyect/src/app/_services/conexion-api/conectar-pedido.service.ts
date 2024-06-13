@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Pedido } from './pedido.model';
+import { Pedido } from 'src/app/_models/pedido.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({

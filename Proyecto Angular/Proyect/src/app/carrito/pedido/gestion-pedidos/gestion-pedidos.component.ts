@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { UsuarioService } from 'src/app/auth/usuario.service';
-import { ProductoService } from 'src/app/categoria/producto/producto.service';
-import { DetallePedidoService } from '../../detalle-pedido/detalle-pedido.service';
-import { Pedido } from '../pedido.model';
-import { PedidoService } from '../pedido.service';
-import { ConectarPedidoService } from '../conectar-pedido.service';
+import { UsuarioService } from 'src/app/_services/usuario.service';
+import { ProductoService } from 'src/app/_services/producto.service';
+
+import { Pedido } from '../../../_models/pedido.model';
+import { PedidoService } from '../../../_services/pedido.service';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
+import { DetallePedidoService } from 'src/app/_services/detalle-pedido.service';
+import { ConectarPedidoService } from 'src/app/_services/conexion-api/conectar-pedido.service';
 
 @Component({
   selector: 'app-gestion-pedidos',
@@ -31,7 +32,7 @@ export class GestionPedidosComponent implements OnInit {
         }
       }
     )
-    // this.pedidos = this.pedidoService.getAllPedidosHechos();
+    this.pedidos = this.pedidoService.getAllPedidosHechos();
   }
 
   getDetalles(idPedido: number) {

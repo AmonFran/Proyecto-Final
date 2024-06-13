@@ -1,14 +1,14 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Categoria } from '../../categoria.model';
-import { CategoriaService } from '../../categoria.service';
+import { Categoria } from '../../../_models/categoria.model';
+import { CategoriaService } from '../../../_services/categoria.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ProductoService } from '../producto.service';
-import { ImagenesStorageService } from '../producto-imagenes/conectar-imagenes.service';
-import { ImagenesService } from '../producto-imagenes/imagenes.service';
-import { Producto } from '../producto.model';
-import { Imagen } from '../producto-imagenes/imagen.model';
-import { ConectarProductoService } from '../conectar-producto.service';
+import { ProductoService } from '../../../_services/producto.service';
+import { ImagenesService } from '../../../_services/imagenes.service';
+import { Producto } from '../../../_models/producto.model';
+import { Imagen } from '../../../_models/imagen.model';
+import { ConectarProductoService } from '../../../_services/conexion-api/conectar-producto.service';
+import { ImagenesStorageService } from 'src/app/_services/conexion-api/conectar-imagenes.service';
 
 @Component({
   selector: 'app-producto-edit',

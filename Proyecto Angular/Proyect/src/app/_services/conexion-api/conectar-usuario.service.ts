@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Usuario } from './usuario.model';
+import { Usuario } from '../../_models/usuario.model';
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
 

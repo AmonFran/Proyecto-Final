@@ -1,0 +1,5 @@
+<h2>Nuevo comentario</h2>
+<form (ngSubmit)="enviarComentario(this)" class="row">
+    <textarea name="comentario" id="comentario" [(ngModel)]="comentario" rows="4" class="col-12"></textarea>
+    <input type="submit" value="Enviar comentario" class="col-2">
+</form>

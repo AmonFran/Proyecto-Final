@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { UsuarioService } from '../auth/usuario.service';
-import { Producto } from './producto/producto.model';
-import { ProductoService } from './producto/producto.service';
-import { ImagenesService } from './producto/producto-imagenes/imagenes.service';
+import { UsuarioService } from '../_services/usuario.service';
+import { Producto } from '../_models/producto.model';
+import { ProductoService } from '../_services/producto.service';
+import { ImagenesService } from '../_services/imagenes.service';
 
 @Component({
   selector: 'app-categoria',
@@ -41,12 +41,11 @@ export class CategoriaComponent implements OnInit {
         }
       }
     );
-    // this.productos = this.productoService.getProductosCategoria(this.id);
+    this.productos = this.productoService.getProductosCategoria(this.id);
     this.initForm();
   }
 
   initForm() {
-
     this.filtrosForm = new FormGroup({
       'Algodon': new FormControl(false),
       'Plastico': new FormControl(false),
@@ -119,7 +118,7 @@ export class CategoriaComponent implements OnInit {
   }
 
   enModificar(index: number) {
-    if (this.usuarioService.usuarioLogeado && this.usuarioService.getRolLogeado() != "USER") {
+    if (this.usuarioService.usuarioLogeado && this.usuarioService.getRolLogeado() == "ADMIN") {
       this.router.navigate(['../edit/' + index], { relativeTo: this.route });
     }
     else {

@@ -1,16 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { UsuarioService } from 'src/app/auth/usuario.service';
-import { ImagenesService } from '../producto-imagenes/imagenes.service';
-import { Producto } from '../producto.model';
-import { ProductoService } from '../producto.service';
-import { Imagen } from '../producto-imagenes/imagen.model';
-import { DetallePedidoService } from '../../../carrito/detalle-pedido/detalle-pedido.service';
-import { PedidoService } from '../../../carrito/pedido/pedido.service';
-import { ConectarPedidoService } from 'src/app/carrito/pedido/conectar-pedido.service';
-import { ConectarDetallePedidoService } from 'src/app/carrito/detalle-pedido/conectar-detalle-pedido.service';
-import { DetallePedido } from 'src/app/carrito/detalle-pedido/detalle-pedido';
+import { ConectarDetallePedidoService } from 'src/app/_services/conexion-api/conectar-detalle-pedido.service';
+import { UsuarioService } from 'src/app/_services/usuario.service';
+import { DetallePedido } from 'src/app/_models/detalle-pedido';
+
+import { PedidoService } from '../../../_services/pedido.service';
+import { Imagen } from '../../../_models/imagen.model';
+import { ImagenesService } from '../../../_services/imagenes.service';
+import { Producto } from '../../../_models/producto.model';
+import { ProductoService } from '../../../_services/producto.service';
+import { DetallePedidoService } from 'src/app/_services/detalle-pedido.service';
+import { ConectarPedidoService } from 'src/app/_services/conexion-api/conectar-pedido.service';
+import { ToastrService } from 'ngx-toastr';
+import { Comentario } from 'src/app/_models/comentario.model';
+import { ComentarioService } from 'src/app/_services/comentario.service';
+import { ConectarComentarioService } from 'src/app/_services/conexion-api/conectar-comentario.service';
 
 @Component({
   selector: 'app-producto-detail',
@@ -20,11 +25,17 @@ import { DetallePedido } from 'src/app/carrito/detalle-pedido/detalle-pedido';
 export class ProductoDetailComponent implements OnInit {
 
   subscriptionParametros: Subscription | undefined;
+  subscriptionProductos: Subscription | undefined;
+  subscriptionImagenes: Subscription | undefined;
+  subscriptionComentario: Subscription | undefined;
+
   producto: Producto = {} as Producto;
   imagenes: Imagen[] = [];
   id: number = 0;
   caracteristicas: string[] = [];
-  constructor(private route: ActivatedRoute, private router: Router, public usuarioService: UsuarioService, private productoService: ProductoService, private imagenesService: ImagenesService, private pedidoService: PedidoService, private detallePedidoService: DetallePedidoService, private conectarPedidoService: ConectarPedidoService, private conectarDetallePedidoService: ConectarDetallePedidoService) { }
+  comentarios: Comentario[] = [];
+
+  constructor(private route: ActivatedRoute, private router: Router, public usuarioService: UsuarioService, private productoService: ProductoService, private imagenesService: ImagenesService, private pedidoService: PedidoService, private detallePedidoService: DetallePedidoService, private comentarioService: ComentarioService, private conectarPedidoService: ConectarPedidoService, private conectarDetallePedidoService: ConectarDetallePedidoService, private conectarComentarioService: ConectarComentarioService, private toastrService: ToastrService) { }
 
   ngOnInit(): void {
     this.subscriptionParametros = this.route.params.subscribe(
@@ -35,21 +46,51 @@ export class ProductoDetailComponent implements OnInit {
           this.caracteristicas = this.producto.caracteristicas.split(', ');
         }
       });
+    this.subscriptionProductos = this.productoService.productosChanged.subscribe(
+      () => {
+        this.producto = this.productoService.getProducto(this.id);
+        if (this.producto.caracteristicas) {
+          this.caracteristicas = this.producto.caracteristicas.split(', ');
+        }
+      }
+    )
+    this.subscriptionImagenes = this.imagenesService.imagenesChanged.subscribe(
+      () => {
+        this.imagenes = this.imagenesService.getImagenesProducto(this.id);
+      }
+    )
     this.imagenes = this.imagenesService.getImagenesProducto(this.id);
+    this.subscriptionComentario = this.comentarioService.comentariosChanged.subscribe(
+      () => {
+        this.comentarios = this.comentarioService.getComentariosProducto(this.id);
+      }
+    )
+    this.comentarios = this.comentarioService.getComentariosProducto(this.id);
   }
 
   anhadir() {
-    const pedido = this.pedidoService.buscarPedido(this.usuarioService.usuarioLogeado.id);
-    if (typeof (pedido) != 'boolean') {
-      this.detallePedidoService.anhadirProducto(pedido.id, this.producto.id);
-      this.conectarDetallePedidoService.guardarDetallePedido(new DetallePedido(this.detallePedidoService.detallesPedidos.length, pedido.id, this.producto.id));
+    if (this.usuarioService.usuarioLogeado) {
+      const pedido = this.pedidoService.buscarPedido(this.usuarioService.usuarioLogeado.id);
+      if (typeof (pedido) != 'boolean') {
+        this.detallePedidoService.anhadirProducto(pedido.id, this.producto.id);
+        this.conectarDetallePedidoService.guardarDetallePedido(new DetallePedido(this.detallePedidoService.detallesPedidos.length, pedido.id, this.producto.id));
+      }
+      else {
+        const nuevoPedido = this.pedidoService.crearPedido(this.producto.id, this.usuarioService.usuarioLogeado.id);
+        this.conectarPedidoService.guardarPedido(nuevoPedido);
+        this.conectarDetallePedidoService.guardarDetallePedido(new DetallePedido(this.detallePedidoService.detallesPedidos.length, nuevoPedido.id, this.producto.id))
+      }
+      this.router.navigate([''], { relativeTo: this.route.root });
+    } else {
+      this.toastrService.error("Debes estar logueado para añadir el producto");
     }
-    else {
-      const nuevoPedido = this.pedidoService.crearPedido(this.producto.id, this.usuarioService.usuarioLogeado.id);
-      this.conectarPedidoService.guardarPedido(nuevoPedido);
-      this.conectarDetallePedidoService.guardarDetallePedido(new DetallePedido(this.detallePedidoService.detallesPedidos.length, nuevoPedido.id, this.producto.id))
-    }
-    this.router.navigate([''], { relativeTo: this.route.root });
   }
 
+  getUsuario(idUsuario: number) {
+    return this.usuarioService.getUsuario(idUsuario)?.alias;
+  }
+  eliminarComentario(idComentario: number) {
+    this.comentarioService.borrarComentario(idComentario);
+    this.conectarComentarioService.borrarComentario(idComentario);
+  }
 }

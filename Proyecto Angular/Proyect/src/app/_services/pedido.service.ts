@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { DetallePedidoService } from '../detalle-pedido/detalle-pedido.service';
-import { Pedido } from './pedido.model';
+
+import { Pedido } from '../_models/pedido.model';
 import { Subject } from 'rxjs';
+import { DetallePedidoService } from 'src/app/_services/detalle-pedido.service';
 
 @Injectable({
   providedIn: 'root'

@@ -1,16 +1,15 @@
 <header th:fragment="navegacion">
     <div class="row">
-        <div class="col-6">
-            <a routerLink="">
+        <div class="col-4">
+            <a class="m-2" routerLink="">
                 <img src="../../assets/images/logoPrueba.png" alt="Logo de Sedutriv S.L." title="Logo de Sedutriv S.L."
-                    id="logoHeader" class="align-middle" />
+                    id="logoHeader" class="align-middle m-1" />
             </a>
-            <h1 class="titulo" routerLink="">SEDUTRIV</h1>
+            <h2 class="titulo text-center align-middle" routerLink="">SEDUTRIV</h2>
         </div>
         <!-- <div class="col-2">
-            
         </div> -->
-        <div class="col-6 DivFlotarDerecha">
+        <div class="col-8 DivFlotarDerecha">
             <div class="row m-2">
                 <div class="col-4">
 
@@ -50,9 +49,8 @@
                                     (click)="onLogOut()" *ngIf="usuarioService.usuarioLogeado">
                             </div>
                             <div class="col">
-                                <input type="button" id="perfil" value="Perfil"
-                                    class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
+                                <img src="../../assets/images/Iconos/usuario.png" alt="iconoUsuario"
+                                    class="dropdown-toggle icoUsuario" data-bs-toggle="dropdown" aria-expanded="false">
                                 <ul class="dropdown-menu opciones">
                                     <li style="cursor: pointer;" (click)="editarPerfil()">
                                         <a>Editar Perfil</a>
@@ -91,9 +89,9 @@
             <div class="col-lg-2" routerLink="/categoria/4">
                 <span class="enlacesNavegacion">Cortinas</span>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-4 navCarrito">
                 <div id="compraNavegacion">
-                    <a routerLink="/carrito">
+                    <a class="me-3" routerLink="/carrito">
                         <img src="../../assets/images/carrito.png" id="iconoNavegacion">
                     </a>
                     <input type="search" placeholder="Buscar..." id="buscadorNavegacion" [(ngModel)]="buscador"

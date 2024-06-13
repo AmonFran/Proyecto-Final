@@ -16,16 +16,19 @@ import { EditarPerfilComponent } from './auth/editar-perfil/editar-perfil.compon
 import { PedidoListComponent } from './carrito/pedido/pedido-list/pedido-list.component';
 import { AdminUsersComponent } from './auth/admin-users/admin-users.component';
 import { GestionPedidosComponent } from './carrito/pedido/gestion-pedidos/gestion-pedidos.component';
+import { AuthGuard } from './_guards/auth.guard';
+import { AdminGuard } from './_guards/admin.guard';
+import { ManagerGuard } from './_guards/manager.guard';
 
 const routes: Routes = [
   {
     path: '', component: MainComponent
   },
   {
-    path: 'categoria/new', component: ProductoEditComponent
+    path: 'categoria/new', component: ProductoEditComponent, canActivate: [AdminGuard]
   },
   {
-    path: 'categoria/edit/:id', component: ProductoEditComponent
+    path: 'categoria/edit/:id', component: ProductoEditComponent, canActivate: [AdminGuard]
   },
   {
     path: 'categoria/:id', component: CategoriaComponent
@@ -37,22 +40,22 @@ const routes: Routes = [
     path: 'producto/:id', component: ProductoDetailComponent
   },
   {
-    path: 'editarPerfil/:id', component: EditarPerfilComponent
+    path: 'editarPerfil/:id', component: EditarPerfilComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'pedidos', component: PedidoListComponent
+    path: 'pedidos', component: PedidoListComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'gestionPedidos', component: GestionPedidosComponent
+    path: 'gestionPedidos', component: GestionPedidosComponent, canActivate: [ManagerGuard]
   },
   {
-    path: 'carrito', component: CarritoComponent
+    path: 'carrito', component: CarritoComponent, canActivate: [AuthGuard]
   },
   {
     path: 'registro', component: RegistroComponent
   },
   {
-    path: 'adminUsers', component: AdminUsersComponent
+    path: 'adminUsers', component: AdminUsersComponent, canActivate: [AdminGuard]
   },
   {
     path: 'aboutUs', component: AboutUsComponent

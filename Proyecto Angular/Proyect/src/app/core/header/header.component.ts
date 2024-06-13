@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm, NgModel } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UsuarioService } from 'src/app/auth/usuario.service';
+import { UsuarioService } from 'src/app/_services/usuario.service';
 
 @Component({
   selector: 'app-header',
