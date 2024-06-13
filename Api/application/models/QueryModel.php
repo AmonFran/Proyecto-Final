@@ -60,6 +60,11 @@ class QueryModel extends CI_Model
         }
         return ($this->ExecuteArrayResults($sql));
     }
+    public function ListarComentarios()
+    {
+        $sql = "Select * From Comentario";
+        return ($this->ExecuteArrayResults($sql));
+    }
 
     public function insert($tabla, $datos)
     {

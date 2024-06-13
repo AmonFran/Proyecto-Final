@@ -29,6 +29,7 @@ class ApiProducto extends REST_Controller
         $imagenes = $this->QueryModel->ListarImagenes();
         $pedido = $this->QueryModel->ListarPedidos();
         $detallePedido = $this->QueryModel->ListarDetallePedido();
+        $comentario = $this->QueryModel->ListarComentarios();
         $datos = array(
             'producto' => $producto,
             'categoria' => $categoria,
@@ -36,6 +37,7 @@ class ApiProducto extends REST_Controller
             'imagenes' => $imagenes,
             'pedidos' => $pedido,
             'detallesPedidos' => $detallePedido,
+            'comentarios' => $comentario,
         );
         $output['data'] = [
             'datos' => $datos

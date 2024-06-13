@@ -42,7 +42,10 @@ $route['detalle-post'] = 'ApiDetallePedido/detalle';
 $route['detalle-put'] = 'ApiDetallePedido/detalle';
 $route['detalle-delete'] = 'ApiDetallePedido/detalle';
 
+// Api comentario
+$route['comentario-post'] = 'ApiComentario/comentario';
+$route['comentario-put'] = 'ApiComentario/comentario';
+$route['comentario-delete'] = 'ApiComentario/comentario';
+
 // Subir imagenes
 $route['archivo-post'] = 'ApiArchivo/archivo';
-
-// 
