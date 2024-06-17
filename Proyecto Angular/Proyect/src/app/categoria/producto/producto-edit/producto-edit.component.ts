@@ -162,7 +162,9 @@ export class ProductoEditComponent implements OnInit {
         this.productoStorageService.guardarProducto(nuevoProducto);
         this.productoService.agregarProducto(nuevoProducto)
       }
-      this.router.navigate(['../' + nuevoProducto.idCategoria], { relativeTo: this.route })
+      setTimeout(() => {
+        this.router.navigate(['../' + nuevoProducto.idCategoria], { relativeTo: this.route })
+      }, 1000);
     }
   }
 

@@ -14,3 +14,7 @@ body {
 .enlaceCarrusel {
     cursor: pointer;
 }
+
+main {
+    margin-bottom: 40px;
+}

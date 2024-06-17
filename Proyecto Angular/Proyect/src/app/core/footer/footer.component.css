@@ -1,7 +1,9 @@
 footer {
     overflow: hidden;
     background-color: #907DB3;
+    margin-top: 40px;
 }
+
 #nombreEmpresa span {
     color: white;
     float: right;

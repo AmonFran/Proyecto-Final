@@ -35,7 +35,7 @@
             <figure *ngFor="let producto of productos">
                 <img style="cursor:pointer;" src="{{getPrimeraImagenProducto(producto.id).imagenPath}}"
                     alt="{{producto.nombre}}" title="{{producto.nombre}}" (click)="enModificar(producto.id)">
-                <figcaption class="nombre">{{producto.nombre}} {{producto.precio}}€</figcaption>
+                <figcaption class="nombre" >{{producto.nombre}} {{producto.precio}}€</figcaption>
             </figure>
         </div>
     </div>

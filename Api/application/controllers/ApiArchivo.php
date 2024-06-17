@@ -22,7 +22,7 @@ class ApiArchivo extends REST_Controller
         $this->upload->initialize($config);
 
         if (FCPATH . '/assets/images/productos/' . $_FILES['image']['name']) {
-            unlink(FCPATH . 'assets\images\productos\\' . $_FILES['image']['name']);
+            unlink(FCPATH . 'assets/images/productos/' . $_FILES['image']['name']);
         }
 
         if (!$this->upload->do_upload('image')) {
